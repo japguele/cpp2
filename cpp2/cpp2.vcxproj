@@ -79,8 +79,19 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BuildCard.h" />
+    <ClInclude Include="BuildingType.h" />
+    <ClInclude Include="ChatCommand.h" />
     <ClInclude Include="ClientCommand.h" />
+    <ClInclude Include="CommandController.h" />
+    <ClInclude Include="Deck.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameController.h" />
+    <ClInclude Include="ICommand.h" />
+    <ClInclude Include="JoinCommand.h" />
+    <ClInclude Include="ListCommand.h" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="PlayerCard.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Sync_queue.h" />
@@ -88,8 +99,18 @@
     <ClInclude Include="throw.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BuildCard.cpp" />
+    <ClCompile Include="ChatCommand.cpp" />
+    <ClCompile Include="CommandController.cpp" />
     <ClCompile Include="cpp2.cpp" />
+    <ClCompile Include="Deck.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="ICommand.cpp" />
+    <ClCompile Include="JoinCommand.cpp" />
+    <ClCompile Include="ListCommand.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerCard.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

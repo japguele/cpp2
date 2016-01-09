@@ -13,6 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{a39ce148-6179-4657-9fa3-f4229fa63ab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller">
+      <UniqueIdentifier>{210fccb1-bc42-4a4a-ba0d-fd22e948a224}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{95512817-e433-4b01-b269-bd610af4cec9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\BuildCards">
+      <UniqueIdentifier>{6b0ebde6-b848-42a6-94ee-829a5b1a8d3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\PlayerCards">
+      <UniqueIdentifier>{8cefd679-059a-433c-b860-073eba5977af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model">
+      <UniqueIdentifier>{5877c3b8-0644-4319-addf-c9d204b1c5f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\BuildCards">
+      <UniqueIdentifier>{0336669e-2635-45ad-824f-a555dac2e516}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\PlayerCards">
+      <UniqueIdentifier>{96d05c23-027e-4cea-a0c8-05567f802e3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Commands">
+      <UniqueIdentifier>{bb1b2623-2397-4ff9-82b6-335cefb48cf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Commands">
+      <UniqueIdentifier>{c819be8e-f7e7-4364-9d69-56661a845d81}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -22,9 +52,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ClientCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Player.hpp">
@@ -38,6 +65,42 @@
     </ClInclude>
     <ClInclude Include="throw.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameController.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildCard.h">
+      <Filter>Header Files\Model\BuildCards</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCard.h">
+      <Filter>Header Files\Model\PlayerCards</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingType.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Deck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandController.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="JoinCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ListCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +118,36 @@
     </ClCompile>
     <ClCompile Include="cpp2.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameController.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildCard.cpp">
+      <Filter>Source Files\Model\BuildCards</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCard.cpp">
+      <Filter>Source Files\Model\PlayerCards</Filter>
+    </ClCompile>
+    <ClCompile Include="Deck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ICommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandController.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="JoinCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="ListCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

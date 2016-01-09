@@ -14,6 +14,7 @@
 #include <vector>
 using namespace std;
 
+#include "GameController.h"
 #include "Socket.h"
 #include "Sync_queue.h"
 #include "ClientCommand.h"
@@ -24,18 +25,20 @@ namespace machiavelli {
     const string prompt {"machiavelli> "};
 }
 
-static Sync_queue<ClientCommand> queue;
-
+static Sync_queue<ClientCommand> queu;
+GameController game;
 void consume_command() // runs in its own thread
 {
     try {
         while (true) {
-			ClientCommand command {queue.get()}; // will block here unless there are still command objects in the queue
+			ClientCommand command{ queu.get() }; // will block here unless there are still command objects in the queue
 			shared_ptr<Socket> client {command.get_client()};
 			shared_ptr<Player> player {command.get_player()};
 			try {
 				// TODO handle command here
-				*client << player->get_name() << ", you wrote: '" << command.get_cmd() << "', but I'll ignore that for now.\r\n" << machiavelli::prompt;
+				game.Execute(player, command);
+				*client << "\r\n" << machiavelli::prompt;
+			//	*client << player->get_name() << ", you wrote: '" << command.get_cmd() << "', but I'll ignore that for now.\r\n" << machiavelli::prompt;
 			} catch (const exception& ex) {
 				cerr << "*** exception in consumer thread for player " << player->get_name() << ": " << ex.what() << '\n';
 				if (client->is_open()) {
@@ -60,7 +63,7 @@ void handle_client(shared_ptr<Socket> client) // this function runs in a separat
 		client->write("What's your name?\r\n");
         client->write(machiavelli::prompt);
 		string name {client->readline()};
-		shared_ptr<Player> player {new Player {name}};
+		shared_ptr<Player> player {new Player {name,client}};
 		*client << "Welcome, " << name << ", have fun playing our game!\r\n" << machiavelli::prompt;
 
         while (true) { // game loop
@@ -75,7 +78,7 @@ void handle_client(shared_ptr<Socket> client) // this function runs in a separat
                 }
 
                 ClientCommand command {cmd, client, player};
-                queue.put(command);
+				queu.put(command);
 
             } catch (const exception& ex) {
 				*client << "ERROR: " << ex.what() << "\r\n";
@@ -91,6 +94,7 @@ void handle_client(shared_ptr<Socket> client) // this function runs in a separat
 
 int main(int argc, const char * argv[])
 {
+	game = GameController();
     // start command consumer thread
     thread consumer {consume_command};
 
