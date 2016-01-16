@@ -22,6 +22,7 @@ public:
     std::string get_cmd() const { return cmd; }
 	std::shared_ptr<Socket> get_client() const { return client; }
     std::shared_ptr<Player> get_player() const { return player; }
+	
 
 private:
     std::string cmd;

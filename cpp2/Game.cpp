@@ -21,7 +21,7 @@ const std::set<std::shared_ptr<Player>> Game::GetPlayers(){
 }
 
 void Game::JoinGame(std::shared_ptr < Player > player){
-	std::cout << "heyo";
+	std::cout << "heyo";  
 	
 	if (m_players.find(player) == m_players.end()){
 		
