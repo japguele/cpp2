@@ -5,6 +5,7 @@
 #include <memory>
 #include "ClientCommand.h"
 #include "CommandController.h"
+#include "Game.h"
 
 class GameController
 {
@@ -15,6 +16,6 @@ public:
 
 private:
 	std::shared_ptr<Game> game;
-	CommandController input;
+	std::shared_ptr<CommandController> input;
 };
 

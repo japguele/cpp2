@@ -93,6 +93,7 @@
     <ClInclude Include="JoinCommand.h" />
     <ClInclude Include="KingCard.h" />
     <ClInclude Include="ListCommand.h" />
+    <ClInclude Include="PickCharacterCommand.h" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerCard.h" />
     <ClInclude Include="Socket.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="JoinCommand.cpp" />
     <ClCompile Include="KingCard.cpp" />
     <ClCompile Include="ListCommand.cpp" />
+    <ClCompile Include="PickCharacterCommand.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerCard.cpp" />
     <ClCompile Include="Socket.cpp" />

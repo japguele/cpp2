@@ -2,8 +2,9 @@
 #include "Deck.h"
 #include "BuildingType.h"
 #include <string>
-
-Deck::Deck()
+#include "PlayerCard.h"
+#include "CommandController.h"
+Deck::Deck(std::shared_ptr<CommandController> controller)
 {	
 	m_cards = std::vector<std::shared_ptr<BuildCard>>();
 
@@ -27,6 +28,12 @@ Deck::Deck()
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(2, BuildingType::Condotierre, std::string("gevangenis"))));
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(3, BuildingType::Condotierre, std::string("tournooiveld"))));
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(5, BuildingType::Condotierre, std::string("burcht"))));
+	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));	
+	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+
 }
 
 
@@ -58,4 +65,35 @@ int Deck::TakeGoldPieces(int amount)
 int Deck::GetGoldAmount()
 {
 	return goldPieces;
+}
+
+std::string Deck::GetRemainingPlayerCardsString(){
+	std::string string = "";
+	if (m_playerCardDeck.size() > 0){
+		for each (std::shared_ptr<PlayerCard> card in m_playerCardDeck)
+		{
+			string = string + card->GetName() + "\r\n";
+
+		}
+	}
+	else{
+		string = "no Remaining Player Cards";
+	}
+	return string;
+
+}
+
+std::vector<std::shared_ptr<PlayerCard>> Deck::GetRemainingPlayerCards(){
+	return m_playerCardDeck;
+}
+
+std::shared_ptr<PlayerCard> Deck::RemoveCard(int x){
+	if (x < m_playerCardDeck.size()){
+		std::shared_ptr<PlayerCard> card = m_playerCardDeck.at(x);
+		m_playerCardDeck.erase(m_playerCardDeck.begin() + x);
+		return card;
+	}
+	else{
+		return nullptr;
+	}
 }

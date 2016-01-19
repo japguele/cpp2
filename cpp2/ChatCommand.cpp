@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ChatCommand.h"
-
+#include "Game.h"
 
 ChatCommand::ChatCommand()
 {
