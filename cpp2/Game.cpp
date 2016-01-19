@@ -2,12 +2,11 @@
 #include "Game.h"
 #include "PlayerCard.h"
 
-Game::Game(std::shared_ptr<CommandController> controller) : deck(Deck(controller))
+Game::Game(std::shared_ptr<CommandController> controller)
 {
 	m_queplayers = std::queue<std::shared_ptr<Player>>();
 	m_players = std::set<std::shared_ptr<Player>>();
-
-	
+	deck = std::shared_ptr<Deck>(new Deck(controller));
 }
 
 
@@ -32,10 +31,8 @@ void Game::JoinGame(std::shared_ptr < Player > player){
 	if (m_players.size() > 1){
 		StartNewGame();
 	}
-
-
-	
 }
+
 void Game::StartNewGame(){	
 	started = true;
 
@@ -46,10 +43,10 @@ void Game::StartNewGame(){
 
 	SendMessageToAll("Removing one random Charactercard from the deck \r\n");
 
-	m_queplayers.front()->get_client()->write("Playercard remove is " + deck.RemoveCard(0)->GetName());
+	m_queplayers.front()->get_client()->write("Playercard remove is " + deck->RemoveCard(0)->GetName());
 	SendMessageToAll("Player " + m_queplayers.front()->get_name() + " please select a Character card\r\n");
 
-	m_queplayers.front()->get_client()->write("Remaining card : " + deck.GetRemainingPlayerCardsString());
+	m_queplayers.front()->get_client()->write("Remaining card : " + deck->GetRemainingPlayerCardsString());
 
 }
 void Game::ChooseCharater(){
@@ -86,4 +83,9 @@ void Game::SendMessageToAll(std::string message){
 }
 bool Game::Started(){
 	return started;
+}
+
+std::shared_ptr<Deck> Game::GetDeck()
+{
+	return deck;
 }

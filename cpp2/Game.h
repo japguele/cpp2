@@ -17,9 +17,9 @@ public:
 	void StartNewGame();
 	void ChooseCharater();
 	void EndTurn();
-
+	std::shared_ptr<Deck> GetDeck();
 private:
-	Deck deck;
+	std::shared_ptr<Deck> deck;
 	bool started = false;
 	bool characterPhase = false;
 

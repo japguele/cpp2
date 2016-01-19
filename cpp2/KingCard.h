@@ -4,7 +4,7 @@ class KingCard :
 	public PlayerCard
 {
 public:
-	KingCard(std::unique_ptr<CommandController> controller);
+	KingCard(std::shared_ptr<CommandController> controller);
 	~KingCard();
 
 	void StartTurn();
