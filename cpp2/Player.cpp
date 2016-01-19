@@ -7,6 +7,6 @@
 //
 
 #include "Player.hpp"
-
+#include "PlayerCard.h"
 using namespace std;
 

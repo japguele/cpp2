@@ -33,6 +33,7 @@ Deck::Deck()
 Deck::~Deck()
 {
 }
+
 std::vector<std::shared_ptr<BuildCard>> Deck::DrawCards(int ammount){
 	std::vector<std::shared_ptr<BuildCard>> card = std::vector<std::shared_ptr<BuildCard>>();
 	for (int x = 0; x < ammount; x++){
@@ -41,4 +42,20 @@ std::vector<std::shared_ptr<BuildCard>> Deck::DrawCards(int ammount){
 	}
 	return card;
 		
+}
+
+void Deck::AddGoldPieces(int amount)
+{
+	goldPieces += amount;
+}
+
+int Deck::TakeGoldPieces(int amount)
+{
+	goldPieces -= amount;
+	return amount;
+}
+
+int Deck::GetGoldAmount()
+{
+	return goldPieces;
 }

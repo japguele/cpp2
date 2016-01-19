@@ -102,6 +102,18 @@
     <ClInclude Include="ChatCommand.h">
       <Filter>Header Files\Model\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="AbilityCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="TakeCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="KingCard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -148,6 +160,18 @@
     </ClCompile>
     <ClCompile Include="ChatCommand.cpp">
       <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="TakeCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="AbilityCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="KingCard.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
