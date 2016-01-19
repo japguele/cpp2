@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "JoinCommand.h"
-
+#include "Game.h"
 
 JoinCommand::JoinCommand()
 {

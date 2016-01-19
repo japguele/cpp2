@@ -102,6 +102,9 @@
     <ClInclude Include="ChatCommand.h">
       <Filter>Header Files\Model\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="PickCharacterCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -147,6 +150,9 @@
       <Filter>Source Files\Model\Commands</Filter>
     </ClCompile>
     <ClCompile Include="ChatCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="PickCharacterCommand.cpp">
       <Filter>Source Files\Model\Commands</Filter>
     </ClCompile>
   </ItemGroup>

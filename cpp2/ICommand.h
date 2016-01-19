@@ -2,7 +2,8 @@
 #include <memory>
 #include "Player.hpp"
 #include "ClientCommand.h"
-#include "Game.h"
+
+class Game;
 class ICommand
 {
 public:
