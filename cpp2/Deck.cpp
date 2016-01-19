@@ -41,10 +41,10 @@ Deck::~Deck()
 {
 }
 
-std::vector<std::shared_ptr<BuildCard>> Deck::DrawCards(int ammount){
-	std::vector<std::shared_ptr<BuildCard>> card = std::vector<std::shared_ptr<BuildCard>>();
+std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> Deck::DrawCards(int ammount){
+	std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> card = std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>>();
 	for (int x = 0; x < ammount; x++){
-		card.push_back(m_cards.back());
+		card->push_back(m_cards.back());
 		m_cards.pop_back();
 	}
 	return card;

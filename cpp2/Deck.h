@@ -11,7 +11,7 @@ public:
 	Deck(std::shared_ptr<CommandController> controller);
 	~Deck();
 
-	std::vector<std::shared_ptr<BuildCard>> DrawCards(int ammount);
+	std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> DrawCards(int ammount);
 	int TakeGoldPieces(int amount);
 	void AddGoldPieces(int amount);
 	int GetGoldAmount();

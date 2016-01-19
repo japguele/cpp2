@@ -4,7 +4,7 @@
 
 PlayerCard::PlayerCard(std::shared_ptr<CommandController> controller)
 {
-        m_commands = std::set<std::shared_ptr<ICommand>>();
+    m_commands = std::set<std::shared_ptr<ICommand>>();
 	m_commands.insert(controller->GetCommand("join"));
 	m_commands.insert(controller->GetCommand("chat"));
 	m_commands.insert(controller->GetCommand("list"));	
@@ -20,4 +20,13 @@ PlayerCard::~PlayerCard()
 
 std::string PlayerCard::GetName(){
 	return m_name;
+}
+
+void PlayerCard::StartTurn(std::shared_ptr<Player> player, std::shared_ptr<Game> game)
+{
+}
+
+bool PlayerCard::UseAbility()
+{
+	return false;
 }
