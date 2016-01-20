@@ -3,6 +3,8 @@
 #include "RemoveCharacterCommand.h"
 #include "PickCharacterCommand.h"
 #include "TakeCommand.h"
+#include "DrawCommand.h"
+#include "AbilityCommand.h"
 #include "PrintCommand.h"
 #include "ICommand.h"
 CommandController::CommandController()
@@ -17,6 +19,8 @@ CommandController::CommandController()
 	commands.insert({ "pick", std::shared_ptr<PickCharacterCommand>(new PickCharacterCommand()) });
 
 	commands.insert({ "gold", std::shared_ptr<TakeCommand>(new TakeCommand()) });
+	commands.insert({ "draw", std::shared_ptr<DrawCommand>(new DrawCommand()) });
+	commands.insert({ "ability", std::shared_ptr<AbilityCommand>(new AbilityCommand()) });
 }
 
 std::shared_ptr<ICommand> CommandController::GetCommand(std::string name){
