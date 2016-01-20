@@ -26,8 +26,3 @@ void KingCard::StartTurn(std::shared_ptr<Player> player, std::shared_ptr<Game> g
 		}
 	}
 }
-
-bool KingCard::UseAbility()
-{
-	return false;
-}

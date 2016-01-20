@@ -18,6 +18,7 @@ public:
 	void ChooseCharater();
 	void EndTurn();
 	std::shared_ptr<Deck> GetDeck();
+	std::shared_ptr<Player> GetCurrentPlayer();
 private:
 	std::shared_ptr<Deck> deck;
 	bool started = false;
@@ -26,6 +27,6 @@ private:
 	std::queue<std::shared_ptr<Player>> m_queplayers;
 	std::set<std::shared_ptr<Player>> m_players;
 	
-
+	std::shared_ptr<Player> currentPlayer;
 };
 

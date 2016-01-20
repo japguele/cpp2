@@ -1,5 +1,6 @@
 #pragma once
 #include "BuildCard.h"
+#include "PlayerType.h"
 #include <vector>
 #include <memory>
 
@@ -16,9 +17,11 @@ public:
 	void AddGoldPieces(int amount);
 	int GetGoldAmount();
 
+	std::vector<std::shared_ptr<PlayerCard>> GetAllPlayerCards();
 	std::vector<std::shared_ptr<PlayerCard>> GetRemainingPlayerCards();
 	std::shared_ptr<PlayerCard> RemoveCard(int x);
 	std::string GetRemainingPlayerCardsString();
+
 
 private:
 std::vector<std::shared_ptr<BuildCard>> m_cards;

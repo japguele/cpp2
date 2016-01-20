@@ -89,3 +89,8 @@ std::shared_ptr<Deck> Game::GetDeck()
 {
 	return deck;
 }
+
+std::shared_ptr<Player> Game::GetCurrentPlayer()
+{
+	return currentPlayer;
+}
