@@ -80,11 +80,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbilityCommand.h" />
+    <ClInclude Include="ArchitectCard.h" />
     <ClInclude Include="BuildCard.h" />
     <ClInclude Include="BuildingType.h" />
     <ClInclude Include="ChatCommand.h" />
     <ClInclude Include="ClientCommand.h" />
     <ClInclude Include="CommandController.h" />
+    <ClInclude Include="CondotierreCard.h" />
     <ClInclude Include="Deck.h" />
     <ClInclude Include="DrawCommand.h" />
     <ClInclude Include="Game.h" />
@@ -94,11 +96,13 @@
     <ClInclude Include="KingCard.h" />
     <ClInclude Include="ListCommand.h" />
     <ClInclude Include="MageCard.h" />
+    <ClInclude Include="MerchantCard.h" />
     <ClInclude Include="MurdererCard.h" />
     <ClInclude Include="PickCharacterCommand.h" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerCard.h" />
     <ClInclude Include="PlayerType.h" />
+    <ClInclude Include="PreacherCard.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Sync_queue.h" />
@@ -109,9 +113,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbilityCommand.cpp" />
+    <ClCompile Include="ArchitectCard.cpp" />
     <ClCompile Include="BuildCard.cpp" />
     <ClCompile Include="ChatCommand.cpp" />
     <ClCompile Include="CommandController.cpp" />
+    <ClCompile Include="CondotierreCard.cpp" />
     <ClCompile Include="cpp2.cpp" />
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="DrawCommand.cpp" />
@@ -122,10 +128,12 @@
     <ClCompile Include="KingCard.cpp" />
     <ClCompile Include="ListCommand.cpp" />
     <ClCompile Include="MageCard.cpp" />
+    <ClCompile Include="MerchantCard.cpp" />
     <ClCompile Include="MurdererCard.cpp" />
     <ClCompile Include="PickCharacterCommand.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerCard.cpp" />
+    <ClCompile Include="PreacherCard.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

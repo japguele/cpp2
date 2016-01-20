@@ -19,7 +19,15 @@ bool MageCard::UseAbility(std::shared_ptr<Game> game, std::string target)
 	std::map <std::string, PlayerType>::const_iterator iValue = playerEnumMap.find(target);
 	if (iValue != playerEnumMap.end())
 	{
-		//Get all cards of targets hand;
+		for each (auto card in game->GetDeck()->GetAllPlayerCards())
+		{
+			if (card->GetOwner() != nullptr)
+			{
+				auto temp = owner->get_buildcards();
+				owner->set_buildcards(card->GetOwner()->get_buildcards());
+				card->GetOwner()->set_buildcards(temp);
+			}
+		}
 	}
 
 	return success;

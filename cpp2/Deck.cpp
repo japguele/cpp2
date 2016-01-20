@@ -3,7 +3,9 @@
 #include "BuildingType.h"
 #include <string>
 #include "PlayerCard.h"
+#include "BuildCard.h"
 #include "CommandController.h"
+
 Deck::Deck(std::shared_ptr<CommandController> controller)
 {	
 	m_cards = std::vector<std::shared_ptr<BuildCard>>();
@@ -35,6 +37,9 @@ Deck::Deck(std::shared_ptr<CommandController> controller)
 	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
 	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
 
+	m_usedcards = std::vector<std::shared_ptr<BuildCard>>();
+
+	goldPieces = 30;
 }
 
 
@@ -52,6 +57,11 @@ std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> Deck::DrawCards(int amm
 		
 }
 
+void Deck::AddUsedCard(std::shared_ptr<BuildCard> card)
+{
+	m_usedcards.push_back(card);
+}
+
 void Deck::AddGoldPieces(int amount)
 {
 	goldPieces += amount;
@@ -59,7 +69,11 @@ void Deck::AddGoldPieces(int amount)
 
 int Deck::TakeGoldPieces(int amount)
 {
-	goldPieces -= amount;
+	if (goldPieces > 0)
+		goldPieces -= amount;
+	else
+		amount = 0;
+
 	return amount;
 }
 
@@ -74,7 +88,6 @@ std::string Deck::GetRemainingPlayerCardsString(){
 		for each (std::shared_ptr<PlayerCard> card in m_playerCardDeck)
 		{
 			string = string + card->GetName() + "\r\n";
-
 		}
 	}
 	else{

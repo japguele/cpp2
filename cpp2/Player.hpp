@@ -8,17 +8,17 @@
 
 #ifndef Player_hpp
 #define Player_hpp
-#include "BuildCard.h"
 #include <string>
 #include <vector>
 #include <memory>
 #include "Socket.h"
+#include "BuildCard.h"
 
 class PlayerCard;
 class Player {
 public:
 	Player() {}
-	Player(const std::string& name, std::shared_ptr<Socket> client) : m_name{ name }, m_client{ client }, goldPieces{ 0 }, myTurn { false } {}
+	Player(const std::string& name, std::shared_ptr<Socket> client) : m_name{ name }, m_client{ client }, goldPieces{ 0 }, myTurn{ false } {}
 	
 	std::string get_name() const { return m_name; }
 	void set_name(const std::string& new_name) { m_name = new_name; }
@@ -31,10 +31,50 @@ public:
 			m_cards->push_back(cards->at(i));
 		}
 	}
+	std::shared_ptr<BuildCard> remove_buildcard(std::shared_ptr<BuildCard> card) {
+		std::shared_ptr<BuildCard> rCard = nullptr;
+
+		for (int i = 0; i < m_cards->size(); i++)
+		{
+			if (m_cards->at(i)->get_name() == card->get_name())
+			{
+				rCard = m_cards->at(i);
+				m_cards->erase(m_cards->begin() + i);
+			}
+		}
+
+		return rCard;
+	}
+
+	std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> get_buildings() { return buildings; }
+	void add_buildings(std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> cards) {
+		for (int i = 0; i < cards->size(); i++)
+		{
+			buildings->push_back(cards->at(i));
+		}
+	}
+
+	std::shared_ptr<BuildCard> remove_building(std::shared_ptr<BuildCard> card) {
+		std::shared_ptr<BuildCard> rCard = nullptr;
+
+		for (int i = 0; i < buildings->size(); i++)
+		{
+			if (buildings->at(i)->get_name() == card->get_name())
+			{
+				rCard = buildings->at(i);
+				buildings->erase(buildings->begin() + i);
+			}
+		}
+
+		return rCard;
+	}
+
+	void set_buildcards(std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> cards) { m_cards = cards; }
+
 	std::shared_ptr<Socket> get_client(){ return m_client; }
 
-	void SetCurrentRoles(std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>> new_roles) { currentRoles = new_roles; }
-	std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>> GetCurrentRoles() { return currentRoles;  }
+	void SetCurrentRoles(std::vector<std::shared_ptr<PlayerCard>> new_roles) { currentRoles = new_roles; }
+	std::vector<std::shared_ptr<PlayerCard>> GetCurrentRoles() { return currentRoles;  }
 
 	void AddGoldAmount(int amount) { goldPieces = goldPieces + amount; }
 	void SetGoldAmount(int amount) { goldPieces = amount; }
@@ -43,9 +83,10 @@ public:
 private:
 	std::string m_name;
 	std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> m_cards;
+	std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> buildings;
 	std::shared_ptr<Socket> m_client;
 
-	std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>> currentRoles;
+	std::vector<std::shared_ptr<PlayerCard>> currentRoles;
 
 	int goldPieces;
 	bool myTurn;

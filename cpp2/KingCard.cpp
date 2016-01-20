@@ -18,11 +18,10 @@ void KingCard::StartTurn(std::shared_ptr<Player> player, std::shared_ptr<Game> g
 	{
 		auto card = player->get_buildcards()->at(i);
 
-		if (card->get_buildingtype() == type)
+		if (card->get_buildingtype() == BuildingType::Koning)
 		{
-			int amount = 2;
-			player->AddGoldAmount(amount);
-			game->GetDeck()->TakeGoldPieces(amount);
+			int amount = 1;
+			player->AddGoldAmount(game->GetDeck()->TakeGoldPieces(amount));
 		}
 	}
 }

@@ -1,6 +1,11 @@
 #pragma once
-#include "BuildingType.h"
 #include <string>
+#include <memory>
+#include "BuildingType.h"
+
+
+class Player;
+class Game;
 class BuildCard
 {
 public:
@@ -10,10 +15,15 @@ public:
 	int get_gold();
 	BuildingType get_buildingtype();
 	std::string get_name();
+	void SetOwner(std::shared_ptr<Player> player);
+	std::shared_ptr<Player> GetOwner();
+
+	void Destroy(std::shared_ptr<Game> game);
 private:
 	int m_goldcost;
 	BuildingType m_type;
 	std::string m_name;
+	std::shared_ptr<Player> owner;
 
 };
 

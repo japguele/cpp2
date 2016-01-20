@@ -1,6 +1,7 @@
 #pragma once
 #include "CommandController.h"	
 #include "PlayerType.h"
+#include "BuildCard.h"
 #include <set>
 #include <map>
 //class CommandController;
