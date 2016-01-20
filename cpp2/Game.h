@@ -17,15 +17,16 @@ public:
 	void StartNewGame();
 	void ChooseCharater();
 	void EndTurn();
-
+	std::shared_ptr<Deck> GetDeck();
+	std::shared_ptr<Player> GetCurrentPlayer();
 private:
-	Deck deck;
+	std::shared_ptr<Deck> deck;
 	bool started = false;
 	bool characterPhase = false;
 
 	std::queue<std::shared_ptr<Player>> m_queplayers;
 	std::set<std::shared_ptr<Player>> m_players;
 	
-
+	std::shared_ptr<Player> currentPlayer;
 };
 

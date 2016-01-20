@@ -93,14 +93,18 @@
     <ClInclude Include="JoinCommand.h" />
     <ClInclude Include="KingCard.h" />
     <ClInclude Include="ListCommand.h" />
+    <ClInclude Include="MageCard.h" />
+    <ClInclude Include="MurdererCard.h" />
     <ClInclude Include="PickCharacterCommand.h" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerCard.h" />
+    <ClInclude Include="PlayerType.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Sync_queue.h" />
     <ClInclude Include="TakeCommand.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="ThiefCard.h" />
     <ClInclude Include="throw.h" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +121,8 @@
     <ClCompile Include="JoinCommand.cpp" />
     <ClCompile Include="KingCard.cpp" />
     <ClCompile Include="ListCommand.cpp" />
+    <ClCompile Include="MageCard.cpp" />
+    <ClCompile Include="MurdererCard.cpp" />
     <ClCompile Include="PickCharacterCommand.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerCard.cpp" />
@@ -126,6 +132,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TakeCommand.cpp" />
+    <ClCompile Include="ThiefCard.cpp" />
     <ClCompile Include="throw.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

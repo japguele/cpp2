@@ -114,6 +114,21 @@
     <ClInclude Include="KingCard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PickCharacterCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MurdererCard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerType.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ThiefCard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MageCard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -171,6 +186,18 @@
       <Filter>Source Files\Model\Commands</Filter>
     </ClCompile>
     <ClCompile Include="KingCard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PickCharacterCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MurdererCard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThiefCard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MageCard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
