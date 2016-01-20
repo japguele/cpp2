@@ -105,6 +105,9 @@
     <ClInclude Include="PickCharacterCommand.h">
       <Filter>Header Files\Model\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="RemoveCharacterCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -153,6 +156,9 @@
       <Filter>Source Files\Model\Commands</Filter>
     </ClCompile>
     <ClCompile Include="PickCharacterCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="RemoveCharacterCommand.cpp">
       <Filter>Source Files\Model\Commands</Filter>
     </ClCompile>
   </ItemGroup>

@@ -17,8 +17,13 @@ public:
 	void StartNewGame();
 	void ChooseCharater();
 	void EndTurn();
+	std::shared_ptr<Deck> GetDeck();
+	bool CharacterPhase();
+
+
 private:
-	Deck deck;
+	void ShuffleAcordingToPlayerCards();
+	std::shared_ptr<Deck> deck;
 	bool started = false;
 	bool characterPhase = false;
 

@@ -2,8 +2,9 @@
 #include "Game.h"
 #include "PlayerCard.h"
 
-Game::Game(std::shared_ptr<CommandController> controller) : deck(Deck(controller))
+Game::Game(std::shared_ptr<CommandController> controller) 
 {
+	deck = std::shared_ptr<Deck>(new Deck(controller));
 	m_queplayers = std::queue<std::shared_ptr<Player>>();
 	m_players = std::set<std::shared_ptr<Player>>();
 
@@ -46,10 +47,10 @@ void Game::StartNewGame(){
 
 	SendMessageToAll("Removing one random Charactercard from the deck \r\n");
 
-	m_queplayers.front()->get_client()->write("Playercard remove is " + deck.RemoveCard(0)->GetName());
+	m_queplayers.front()->get_client()->write("Playercard remove is " + deck->RemoveCard(0)->GetName());
 	SendMessageToAll("Player " + m_queplayers.front()->get_name() + " please select a Character card\r\n");
 
-	m_queplayers.front()->get_client()->write("Remaining card : " + deck.GetRemainingPlayerCardsString());
+	m_queplayers.front()->get_client()->write("Remaining card : " + deck->GetRemainingPlayerCardsString());
 
 }
 void Game::ChooseCharater(){
@@ -57,6 +58,10 @@ void Game::ChooseCharater(){
 	
 
 
+
+}
+void Game::ShuffleAcordingToPlayerCards(){
+	//TODO sort to bij rules of player volgorde
 
 }
 void Game::EndTurn(){
@@ -68,11 +73,20 @@ void Game::EndTurn(){
 	m_queplayers.front()->set_turn(true);
 	
 	if (characterPhase){
-		SendMessageToAll("Player : " + m_queplayers.front().get()->get_name() + " please remove one Character card\r\n");
+		if (deck->GetRemainingPlayerCards()->size() < 1){
+			SendMessageToAll("All Playercards have been selected");
+			ShuffleAcordingToPlayerCards();
+			characterPhase = false;
+		}
+		else{
+			SendMessageToAll("Player : " + m_queplayers.front().get()->get_name() + " please remove one Character card\r\n");
+			m_queplayers.front().get()->get_client()->write("Remaining card : " + deck->GetRemainingPlayerCardsString());
+		}
 	}
 	else{
 		SendMessageToAll("Player : " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
 	}
+	
 
 
 }
@@ -86,4 +100,12 @@ void Game::SendMessageToAll(std::string message){
 }
 bool Game::Started(){
 	return started;
+}
+
+bool Game::CharacterPhase(){
+	return characterPhase;
+}
+
+std::shared_ptr<Deck> Game::GetDeck(){
+	return deck;
 }

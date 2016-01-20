@@ -8,6 +8,8 @@ Deck::Deck(std::shared_ptr<CommandController> controller)
 {	
 	m_cards = std::vector<std::shared_ptr<BuildCard>>();
 
+	m_playerCardDeck = std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>>(new std::vector<std::shared_ptr<PlayerCard>>());
+
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(3, BuildingType::Koning,std::string("landgoed"))));
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(4, BuildingType::Koning, std::string("kasteel"))));
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(5, BuildingType::Koning, std::string("palijs"))));
@@ -28,11 +30,21 @@ Deck::Deck(std::shared_ptr<CommandController> controller)
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(2, BuildingType::Condotierre, std::string("gevangenis"))));
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(3, BuildingType::Condotierre, std::string("tournooiveld"))));
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(5, BuildingType::Condotierre, std::string("burcht"))));
-	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
-	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
-	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));	
-	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
-	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+	
+		m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+		m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+		m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+		m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+		m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+		m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+		m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+		m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+	//m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));	
+//	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+	//m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+	
+	
+
 
 }
 
@@ -51,8 +63,8 @@ std::vector<std::shared_ptr<BuildCard>> Deck::DrawCards(int ammount){
 }
 std::string Deck::GetRemainingPlayerCardsString(){
 	std::string string = "";
-	if (m_playerCardDeck.size() > 0){
-		for each (std::shared_ptr<PlayerCard> card in m_playerCardDeck)
+	if (m_playerCardDeck->size() > 0){
+		for each (std::shared_ptr<PlayerCard> card in *m_playerCardDeck)
 		{
 			string = string + card->GetName() + "\r\n";
 
@@ -65,14 +77,15 @@ std::string Deck::GetRemainingPlayerCardsString(){
 
 }
 
-std::vector<std::shared_ptr<PlayerCard>> Deck::GetRemainingPlayerCards(){
+std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>> Deck::GetRemainingPlayerCards(){
 	return m_playerCardDeck;
 }
 
+
 std::shared_ptr<PlayerCard> Deck::RemoveCard(int x){
-	if (x < m_playerCardDeck.size()){
-		std::shared_ptr<PlayerCard> card = m_playerCardDeck.at(x);
-		m_playerCardDeck.erase(m_playerCardDeck.begin() + x);
+	if (x < m_playerCardDeck->size()){
+		std::shared_ptr<PlayerCard> card = m_playerCardDeck->at(x);
+		m_playerCardDeck->erase(m_playerCardDeck->begin() + x);
 		return card;
 	}
 	else{
