@@ -24,6 +24,7 @@ PlayerCard::PlayerCard(std::shared_ptr<CommandController> controller)
 	buildingEnumMap["condotierre"] = Condotierre;
 	buildingEnumMap["keuze"] = Keuze;
 
+	m_name = "error_no_name";
 	dead = false;
 }
 

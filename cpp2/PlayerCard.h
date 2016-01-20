@@ -26,7 +26,7 @@ public:
 	virtual void Die(std::shared_ptr<Player> player);
 
 protected:
-	std::string m_name = "errorplayercard";
+	std::string m_name;
 	std::set<std::shared_ptr<ICommand>> m_commands;
 	PlayerType type;
 	std::shared_ptr<Player> owner;

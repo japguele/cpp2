@@ -2,7 +2,14 @@
 #include "Deck.h"
 #include "BuildingType.h"
 #include <string>
-#include "PlayerCard.h"
+#include "MurdererCard.h"
+#include "ThiefCard.h"
+#include "MageCard.h"
+#include "KingCard.h"
+#include "PreacherCard.h"
+#include "MerchantCard.h"
+#include "ArchitectCard.h"
+#include "CondotierreCard.h"
 #include "BuildCard.h"
 #include "CommandController.h"
 
@@ -33,14 +40,14 @@ Deck::Deck(std::shared_ptr<CommandController> controller)
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(3, BuildingType::Condotierre, std::string("tournooiveld"))));
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(5, BuildingType::Condotierre, std::string("burcht"))));
 	
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
+	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new MurdererCard(controller)));
+	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new ThiefCard(controller)));
+	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new MageCard(controller)));
+	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new KingCard(controller)));
+	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PreacherCard(controller)));
+	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new MerchantCard(controller)));
+	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new ArchitectCard(controller)));
+	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new CondotierreCard(controller)));
 	//m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));	
 //	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
 	//m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));

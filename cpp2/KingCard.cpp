@@ -5,6 +5,7 @@
 KingCard::KingCard(std::shared_ptr<CommandController> controller) :
 	PlayerCard(controller)
 {
+	m_name = "King";
 }
 
 

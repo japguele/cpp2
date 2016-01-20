@@ -111,35 +111,38 @@
     <ClInclude Include="TakeCommand.h">
       <Filter>Header Files\Model\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="KingCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PickCharacterCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MurdererCard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlayerType.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="ThiefCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MageCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PreacherCard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MerchantCard.h">
+    <ClInclude Include="RemoveCharacterCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ArchitectCard.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model\PlayerCards</Filter>
     </ClInclude>
     <ClInclude Include="CondotierreCard.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model\PlayerCards</Filter>
+    </ClInclude>
+    <ClInclude Include="KingCard.h">
+      <Filter>Header Files\Model\PlayerCards</Filter>
+    </ClInclude>
+    <ClInclude Include="MageCard.h">
+      <Filter>Header Files\Model\PlayerCards</Filter>
+    </ClInclude>
+    <ClInclude Include="MerchantCard.h">
+      <Filter>Header Files\Model\PlayerCards</Filter>
+    </ClInclude>
+    <ClInclude Include="MurdererCard.h">
+      <Filter>Header Files\Model\PlayerCards</Filter>
+    </ClInclude>
+    <ClInclude Include="PreacherCard.h">
+      <Filter>Header Files\Model\PlayerCards</Filter>
+    </ClInclude>
+    <ClInclude Include="ThiefCard.h">
+      <Filter>Header Files\Model\PlayerCards</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -197,32 +200,35 @@
     <ClCompile Include="AbilityCommand.cpp">
       <Filter>Source Files\Model\Commands</Filter>
     </ClCompile>
-    <ClCompile Include="KingCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PickCharacterCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MurdererCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ThiefCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MageCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PreacherCard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MerchantCard.cpp">
+    <ClCompile Include="RemoveCharacterCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ArchitectCard.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model\PlayerCards</Filter>
     </ClCompile>
     <ClCompile Include="CondotierreCard.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model\PlayerCards</Filter>
+    </ClCompile>
+    <ClCompile Include="KingCard.cpp">
+      <Filter>Source Files\Model\PlayerCards</Filter>
+    </ClCompile>
+    <ClCompile Include="MageCard.cpp">
+      <Filter>Source Files\Model\PlayerCards</Filter>
+    </ClCompile>
+    <ClCompile Include="MerchantCard.cpp">
+      <Filter>Source Files\Model\PlayerCards</Filter>
+    </ClCompile>
+    <ClCompile Include="MurdererCard.cpp">
+      <Filter>Source Files\Model\PlayerCards</Filter>
+    </ClCompile>
+    <ClCompile Include="PreacherCard.cpp">
+      <Filter>Source Files\Model\PlayerCards</Filter>
+    </ClCompile>
+    <ClCompile Include="ThiefCard.cpp">
+      <Filter>Source Files\Model\PlayerCards</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
