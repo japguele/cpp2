@@ -7,6 +7,7 @@
 #include "ListCommand.h"
 #include "ChatCommand.h"
 
+class ICommand;
 class CommandController
 {
 public:

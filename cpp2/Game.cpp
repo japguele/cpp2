@@ -4,6 +4,7 @@
 
 Game::Game(std::shared_ptr<CommandController> controller)
 {
+	deck = std::shared_ptr<Deck>(new Deck(controller));
 	m_queplayers = std::queue<std::shared_ptr<Player>>();
 	m_players = std::set<std::shared_ptr<Player>>();
 	deck = std::shared_ptr<Deck>(new Deck(controller));
@@ -56,6 +57,10 @@ void Game::ChooseCharater(){
 
 
 }
+void Game::ShuffleAcordingToPlayerCards(){
+	//TODO sort to bij rules of player volgorde
+
+}
 void Game::EndTurn(){
 	
 	std::shared_ptr<Player> player = m_queplayers.front();
@@ -65,11 +70,20 @@ void Game::EndTurn(){
 	m_queplayers.front()->set_turn(true);
 	
 	if (characterPhase){
-		SendMessageToAll("Player : " + m_queplayers.front().get()->get_name() + " please remove one Character card\r\n");
+		if (deck->GetRemainingPlayerCards()->size() < 1){
+			SendMessageToAll("All Playercards have been selected");
+			ShuffleAcordingToPlayerCards();
+			characterPhase = false;
+		}
+		else{
+			SendMessageToAll("Player : " + m_queplayers.front().get()->get_name() + " please remove one Character card\r\n");
+			m_queplayers.front().get()->get_client()->write("Remaining card : " + deck->GetRemainingPlayerCardsString());
+		}
 	}
 	else{
 		SendMessageToAll("Player : " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
 	}
+	
 
 
 }
@@ -93,4 +107,8 @@ std::shared_ptr<Deck> Game::GetDeck()
 std::shared_ptr<Player> Game::GetCurrentPlayer()
 {
 	return currentPlayer;
+}
+
+bool Game::CharacterPhase(){
+	return characterPhase;
 }
