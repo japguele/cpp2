@@ -19,10 +19,10 @@ public:
 	void EndTurn();
 	std::shared_ptr<Deck> GetDeck();
 	std::shared_ptr<Player> GetCurrentPlayer();
-private:
 	bool CharacterPhase();
 	void ShuffleAcordingToPlayerCards();
 
+private:
 	std::shared_ptr<Deck> deck;
 	bool started = false;
 	bool characterPhase = false;

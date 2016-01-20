@@ -25,10 +25,10 @@ public:
 	bool get_turn(){ return myTurn; }
 	void set_turn(const bool& turn){ myTurn = turn; }
 	std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> get_buildcards(){ return m_cards; }
-	void add_buildcards(std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> cards) {
-		for (int i = 0; i < cards->size(); i++)
+	void add_buildcards(std::vector<std::shared_ptr<BuildCard>> cards) {
+		for (int i = 0; i < cards.size(); i++)
 		{
-			m_cards->push_back(cards->at(i));
+			m_cards->push_back(cards.at(i));
 		}
 	}
 	std::shared_ptr<BuildCard> remove_buildcard(std::shared_ptr<BuildCard> card) {
@@ -85,8 +85,6 @@ private:
 	std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> m_cards;
 	std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> buildings;
 	std::shared_ptr<Socket> m_client;
-
-	std::vector<std::shared_ptr<PlayerCard>> currentRoles;
 
 	int goldPieces;
 	bool myTurn;

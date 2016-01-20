@@ -21,17 +21,15 @@ void PickCharacterCommand::Execute(std::shared_ptr<Game> game, const ClientComma
 				bool done = false;
 				std::vector<std::shared_ptr<PlayerCard>>::iterator temp;
 				for (auto it = vec->begin(); it != vec->end() && !done; ++it) {
-					/* std::cout << *it; ... */
+					/* std::cout << *-> ... */
 					if (it->get()->GetName() == command.get_strings().at(1)){
 						done = true;
 						std::vector<std::shared_ptr<PlayerCard>>  vect = command.get_player()->GetCurrentRoles();
 						vect.push_back(*it);
 						command.get_player()->SetCurrentRoles(vect);
 						temp = it;
-						command.get_client()->write("Added " + it->get()->GetName() + " to your Characterlist \r\n");
-						
+						command.get_client()->write("Added " + it->get()->GetName() + " to your Characterlist \r\n");						
 					}
-
 				}
 				
 				if (!done){
@@ -41,13 +39,7 @@ void PickCharacterCommand::Execute(std::shared_ptr<Game> game, const ClientComma
 					vec->erase(temp);
 					game->EndTurn();
 				}
-
-
-
-
-
 			}
 		}
 	}
-
 }

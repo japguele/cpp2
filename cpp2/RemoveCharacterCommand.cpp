@@ -28,23 +28,15 @@ void RemoveCharacterCommand::Execute(std::shared_ptr<Game> game, const ClientCom
 						command.get_client()->write("Removed Player card \r\n");
 						command.get_client()->write("Please select a PlayerCard \r\n");
 					}
-
 				}
-					
-				
+
 				if (!done){
 					command.get_client()->write("Could not remove that Player card \r\n");
 				}
 				else{
 					vec->erase(temp);
 				}
-
-
 			}
-
 		}
-
-
 	}
-
 }

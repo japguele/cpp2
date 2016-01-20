@@ -55,10 +55,10 @@ Deck::~Deck()
 {
 }
 
-std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> Deck::DrawCards(int ammount){
-	std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>> card = std::shared_ptr<std::vector<std::shared_ptr<BuildCard>>>();
+std::vector<std::shared_ptr<BuildCard>> Deck::DrawCards(int ammount){
+	std::vector<std::shared_ptr<BuildCard>> card = std::vector<std::shared_ptr<BuildCard>>();
 	for (int x = 0; x < ammount; x++){
-		card->push_back(m_cards.back());
+		card.push_back(m_cards.back());
 		m_cards.pop_back();
 	}
 	return card;
@@ -93,9 +93,9 @@ int Deck::GetGoldAmount()
 std::string Deck::GetRemainingPlayerCardsString(){
 	std::string string = "";
 	if (m_playerCardDeck->size() > 0){
-		for each (std::shared_ptr<PlayerCard> card in *m_playerCardDeck)
+		for (int i = 0; i < m_playerCardDeck->size(); i++)
 		{
-			string = string + card->GetName() + "\r\n";
+			string = string + m_playerCardDeck->at(i)->GetName() + "\r\n";
 		}
 	}
 	else{
