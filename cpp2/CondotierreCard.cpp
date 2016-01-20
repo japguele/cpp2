@@ -5,7 +5,7 @@
 CondotierreCard::CondotierreCard(std::shared_ptr<CommandController> controller) :
 	PlayerCard(controller)
 {
-	m_name = "Condotierre";
+	m_name = "condotierre";
 }
 
 

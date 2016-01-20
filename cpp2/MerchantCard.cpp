@@ -5,7 +5,7 @@
 MerchantCard::MerchantCard(std::shared_ptr<CommandController> controller) :
 	PlayerCard(controller)
 {
-	m_name = "Merchant";
+	m_name = "merchant";
 }
 
 

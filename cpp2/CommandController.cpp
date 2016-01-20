@@ -2,6 +2,8 @@
 #include "CommandController.h"
 #include "RemoveCharacterCommand.h"
 #include "PickCharacterCommand.h"
+#include "TakeCommand.h"
+#include "PrintCommand.h"
 #include "ICommand.h"
 CommandController::CommandController()
 {
@@ -9,9 +11,12 @@ CommandController::CommandController()
 	commands.insert({ "join", std::shared_ptr<JoinCommand>(new JoinCommand()) });
 	commands.insert({ "list", std::shared_ptr<ListCommand>(new ListCommand()) });
 	commands.insert({ "chat", std::shared_ptr<ChatCommand>(new ChatCommand()) });
+	commands.insert({ "print", std::shared_ptr<PrintCommand>(new PrintCommand()) });
 
 	commands.insert({ "remove", std::shared_ptr<RemoveCharacterCommand>(new RemoveCharacterCommand()) });
 	commands.insert({ "pick", std::shared_ptr<PickCharacterCommand>(new PickCharacterCommand()) });
+
+	commands.insert({ "gold", std::shared_ptr<TakeCommand>(new TakeCommand()) });
 }
 
 std::shared_ptr<ICommand> CommandController::GetCommand(std::string name){

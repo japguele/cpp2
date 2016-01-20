@@ -7,7 +7,6 @@ Game::Game(std::shared_ptr<CommandController> controller)
 	deck = std::shared_ptr<Deck>(new Deck(controller));
 	m_queplayers = std::queue<std::shared_ptr<Player>>();
 	m_players = std::set<std::shared_ptr<Player>>();
-	deck = std::shared_ptr<Deck>(new Deck(controller));
 }
 
 
@@ -44,19 +43,15 @@ void Game::StartNewGame(){
 
 	SendMessageToAll("Removing one random Charactercard from the deck \r\n");
 
-	m_queplayers.front()->get_client()->write("Playercard remove is " + deck->RemoveCard(0)->GetName());
+	m_queplayers.front()->get_client()->write(deck->RemoveCard(0)->GetName() + "has been removed\r\n");
 	SendMessageToAll("Player " + m_queplayers.front()->get_name() + " please select a Character card\r\n");
 
-	m_queplayers.front()->get_client()->write("Remaining card : " + deck->GetRemainingPlayerCardsString());
+	m_queplayers.front()->get_client()->write("Remaining card : \r\n" + deck->GetRemainingPlayerCardsString());
 
 }
 void Game::ChooseCharater(){
-
-	
-
-
-
 }
+
 void Game::ShuffleAcordingToPlayerCards(){
 	//TODO sort to bij rules of player volgorde
 
@@ -71,17 +66,20 @@ void Game::EndTurn(){
 	
 	if (characterPhase){
 		if (deck->GetRemainingPlayerCards()->size() < 1){
-			SendMessageToAll("All Playercards have been selected");
+			SendMessageToAll("All Playercards have been selected\r\n");
 			ShuffleAcordingToPlayerCards();
 			characterPhase = false;
+
+			SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
+			m_queplayers.front().get()->Print(std::shared_ptr<Game>(this));
 		}
 		else{
-			SendMessageToAll("Player : " + m_queplayers.front().get()->get_name() + " please remove one Character card\r\n");
-			m_queplayers.front().get()->get_client()->write("Remaining card : " + deck->GetRemainingPlayerCardsString());
+			SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " please remove one Character card\r\n");
+			m_queplayers.front().get()->get_client()->write("Remaining cards : \r\n" + deck->GetRemainingPlayerCardsString());
 		}
 	}
 	else{
-		SendMessageToAll("Player : " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
+		SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
 	}
 	
 

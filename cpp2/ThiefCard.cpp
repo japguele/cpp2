@@ -5,7 +5,7 @@
 ThiefCard::ThiefCard(std::shared_ptr<CommandController> controller) :
 	PlayerCard(controller)
 {
-	m_name = "Thief";
+	m_name = "thief";
 }
 
 

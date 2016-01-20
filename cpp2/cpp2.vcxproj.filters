@@ -144,6 +144,9 @@
     <ClInclude Include="ThiefCard.h">
       <Filter>Header Files\Model\PlayerCards</Filter>
     </ClInclude>
+    <ClInclude Include="PrintCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -229,6 +232,9 @@
     </ClCompile>
     <ClCompile Include="ThiefCard.cpp">
       <Filter>Source Files\Model\PlayerCards</Filter>
+    </ClCompile>
+    <ClCompile Include="PrintCommand.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

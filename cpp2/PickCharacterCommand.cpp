@@ -33,7 +33,7 @@ void PickCharacterCommand::Execute(std::shared_ptr<Game> game, const ClientComma
 				}
 				
 				if (!done){
-					command.get_client()->write("card  " + command.get_strings().at(1) + " is not in the remaning characterlist \r\n");
+					command.get_client()->write("card  " + command.get_strings().at(1) + " is not in the remaining characterlist \r\n");
 				}
 				else{
 					vec->erase(temp);

@@ -5,7 +5,7 @@
 ArchitectCard::ArchitectCard(std::shared_ptr<CommandController> controller) :
 	PlayerCard(controller)
 {
-	m_name = "Architect";
+	m_name = "architect";
 }
 
 

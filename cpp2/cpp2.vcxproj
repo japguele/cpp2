@@ -103,6 +103,7 @@
     <ClInclude Include="PlayerCard.h" />
     <ClInclude Include="PlayerType.h" />
     <ClInclude Include="PreacherCard.h" />
+    <ClInclude Include="PrintCommand.h" />
     <ClInclude Include="RemoveCharacterCommand.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="stdafx.h" />
@@ -135,6 +136,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerCard.cpp" />
     <ClCompile Include="PreacherCard.cpp" />
+    <ClCompile Include="PrintCommand.cpp" />
     <ClCompile Include="RemoveCharacterCommand.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="stdafx.cpp">

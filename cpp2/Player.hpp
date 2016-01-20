@@ -18,7 +18,7 @@ class PlayerCard;
 class Player {
 public:
 	Player() {}
-	Player(const std::string& name, std::shared_ptr<Socket> client) : m_name{ name }, m_client{ client }, goldPieces{ 0 }, myTurn{ false }, currentRoles{ std::vector<std::shared_ptr<PlayerCard>>()}{}
+	Player(const std::string& name, std::shared_ptr<Socket> client) : m_name{ name }, m_client{ client }, goldPieces{ 0 }, myTurn{ false }, currentRoles{ std::vector<std::shared_ptr<PlayerCard>>() }, m_cards{ new std::vector<std::shared_ptr<BuildCard>> }, buildings { new std::vector<std::shared_ptr<BuildCard>> } {}
 	
 	std::string get_name() const { return m_name; }
 	void set_name(const std::string& new_name) { m_name = new_name; }
@@ -79,6 +79,9 @@ public:
 	void AddGoldAmount(int amount) { goldPieces = goldPieces + amount; }
 	void SetGoldAmount(int amount) { goldPieces = amount; }
 	int GetGoldAmount() { return goldPieces;  }
+
+	void Print(std::shared_ptr<Game> game);
+
 private:
 	std::string m_name;
 	std::vector<std::shared_ptr<PlayerCard>> currentRoles;
