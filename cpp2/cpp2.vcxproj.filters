@@ -111,14 +111,8 @@
     <ClInclude Include="TakeCommand.h">
       <Filter>Header Files\Model\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="PickCharacterCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerType.h">
       <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="RemoveCharacterCommand.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ArchitectCard.h">
       <Filter>Header Files\Model\PlayerCards</Filter>
@@ -144,8 +138,26 @@
     <ClInclude Include="ThiefCard.h">
       <Filter>Header Files\Model\PlayerCards</Filter>
     </ClInclude>
-    <ClInclude Include="PrintCommand.h">
+    <ClInclude Include="BaseState.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SetupState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Phase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RemoveCharacterCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="PickCharacterCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,12 +215,6 @@
     <ClCompile Include="AbilityCommand.cpp">
       <Filter>Source Files\Model\Commands</Filter>
     </ClCompile>
-    <ClCompile Include="PickCharacterCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RemoveCharacterCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ArchitectCard.cpp">
       <Filter>Source Files\Model\PlayerCards</Filter>
     </ClCompile>
@@ -233,8 +239,23 @@
     <ClCompile Include="ThiefCard.cpp">
       <Filter>Source Files\Model\PlayerCards</Filter>
     </ClCompile>
-    <ClCompile Include="PrintCommand.cpp">
+    <ClCompile Include="BaseState.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SetupState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RemoveCharacterCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="PickCharacterCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="PrintCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

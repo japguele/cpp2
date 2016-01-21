@@ -6,6 +6,7 @@
 #include "DrawCommand.h"
 #include "AbilityCommand.h"
 #include "PrintCommand.h"
+#include "BuildCommand.h"
 #include "ICommand.h"
 CommandController::CommandController()
 {
@@ -21,6 +22,8 @@ CommandController::CommandController()
 	commands.insert({ "gold", std::shared_ptr<TakeCommand>(new TakeCommand()) });
 	commands.insert({ "draw", std::shared_ptr<DrawCommand>(new DrawCommand()) });
 	commands.insert({ "ability", std::shared_ptr<AbilityCommand>(new AbilityCommand()) });
+
+	commands.insert({ "built", std::shared_ptr<BuildCommand>(new BuildCommand()) });
 }
 
 std::shared_ptr<ICommand> CommandController::GetCommand(std::string name){

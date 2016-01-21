@@ -81,7 +81,9 @@
   <ItemGroup>
     <ClInclude Include="AbilityCommand.h" />
     <ClInclude Include="ArchitectCard.h" />
+    <ClInclude Include="BaseState.h" />
     <ClInclude Include="BuildCard.h" />
+    <ClInclude Include="BuildCommand.h" />
     <ClInclude Include="BuildingType.h" />
     <ClInclude Include="ChatCommand.h" />
     <ClInclude Include="ClientCommand.h" />
@@ -98,6 +100,7 @@
     <ClInclude Include="MageCard.h" />
     <ClInclude Include="MerchantCard.h" />
     <ClInclude Include="MurdererCard.h" />
+    <ClInclude Include="Phase.h" />
     <ClInclude Include="PickCharacterCommand.h" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerCard.h" />
@@ -105,6 +108,7 @@
     <ClInclude Include="PreacherCard.h" />
     <ClInclude Include="PrintCommand.h" />
     <ClInclude Include="RemoveCharacterCommand.h" />
+    <ClInclude Include="SetupState.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Sync_queue.h" />
@@ -116,7 +120,9 @@
   <ItemGroup>
     <ClCompile Include="AbilityCommand.cpp" />
     <ClCompile Include="ArchitectCard.cpp" />
+    <ClCompile Include="BaseState.cpp" />
     <ClCompile Include="BuildCard.cpp" />
+    <ClCompile Include="BuildCommand.cpp" />
     <ClCompile Include="ChatCommand.cpp" />
     <ClCompile Include="CommandController.cpp" />
     <ClCompile Include="CondotierreCard.cpp" />
@@ -138,6 +144,7 @@
     <ClCompile Include="PreacherCard.cpp" />
     <ClCompile Include="PrintCommand.cpp" />
     <ClCompile Include="RemoveCharacterCommand.cpp" />
+    <ClCompile Include="SetupState.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
