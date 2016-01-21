@@ -54,6 +54,10 @@ public:
 		}
 	}
 
+	void add_building(std::shared_ptr<BuildCard> card) {
+			buildings->push_back(card);
+	}
+
 	std::shared_ptr<BuildCard> remove_building(std::shared_ptr<BuildCard> card) {
 		std::shared_ptr<BuildCard> rCard = nullptr;
 

@@ -5,6 +5,7 @@
 #include <set>
 #include "Deck.h"
 #include "CommandController.h"
+#include "Phase.h"
 class Game
 {
 public:
@@ -26,6 +27,7 @@ private:
 	std::shared_ptr<Deck> deck;
 	bool started = false;
 	bool characterPhase = false;
+	Phase phase;
 
 	std::queue<std::shared_ptr<Player>> m_queplayers;
 	std::set<std::shared_ptr<Player>> m_players;

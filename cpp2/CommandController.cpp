@@ -26,6 +26,7 @@ CommandController::CommandController()
 std::shared_ptr<ICommand> CommandController::GetCommand(std::string name){
 	return commands.at(name);
 }
+
 std::shared_ptr<ICommand> CommandController::GetCommand(ClientCommand command)
 {
 	
