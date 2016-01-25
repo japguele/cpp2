@@ -14,7 +14,7 @@ Game::Game(std::shared_ptr<CommandController> controller)
 
 Game::~Game()
 {
-
+	printf("Game Destroyed");
 }
 
 const std::set<std::shared_ptr<Player>> Game::GetPlayers(){
@@ -60,8 +60,9 @@ void Game::ShuffleAcordingToPlayerCards(){
 	//TODO sort to bij rules of player volgorde
 
 }
-void Game::EndTurn(){
-	
+
+void Game::EndTurn()
+{
 	std::shared_ptr<Player> player = m_queplayers.front();
 	player->set_turn(false);
 	m_queplayers.pop();
@@ -76,6 +77,9 @@ void Game::EndTurn(){
 			characterPhase = false;
 			phase = Phase::ChoicePhase;
 
+			//prepare game for the first round
+			Preparation();
+
 			SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
 			m_queplayers.front().get()->Print(std::shared_ptr<Game>(this));
 		}
@@ -83,11 +87,6 @@ void Game::EndTurn(){
 			SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " please remove one Character card\r\n");
 			m_queplayers.front().get()->get_client()->write("Remaining cards : \r\n" + deck->GetRemainingPlayerCardsString());
 		}
-	}
-
-	if (phase = Phase::ChoicePhase)
-	{
-		SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
 	}
 }
 
