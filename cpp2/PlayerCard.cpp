@@ -9,23 +9,24 @@ PlayerCard::PlayerCard(std::shared_ptr<CommandController> controller)
 	m_commands.insert(controller->GetCommand("chat"));
 	m_commands.insert(controller->GetCommand("list"));	
 
-	playerEnumMap["moordenaar"] = MoordenaarRole;
-	playerEnumMap["dief"] = DiefRole;
-	playerEnumMap["magier"] = MagierRole;
-	playerEnumMap["koning"] = KoningRole;
-	playerEnumMap["prediker"] = PredikerRole;
-	playerEnumMap["koopman"] = KoopmanRole;
-	playerEnumMap["bouwmeester"] = BouwmeesterRole;
+	playerEnumMap["murderer"] = MoordenaarRole;
+	playerEnumMap["thief"] = DiefRole;
+	playerEnumMap["mage"] = MagierRole;
+	playerEnumMap["king"] = KoningRole;
+	playerEnumMap["preacher"] = PredikerRole;
+	playerEnumMap["merchant"] = KoopmanRole;
+	playerEnumMap["architect"] = BouwmeesterRole;
 	playerEnumMap["condotierre"] = CondotierreRole;
 
-	buildingEnumMap["koning"] = Koning;
-	buildingEnumMap["prediker"] = Prediker;
-	buildingEnumMap["koopman"] = Koopman;
+	buildingEnumMap["king"] = Koning;
+	buildingEnumMap["preacher"] = Prediker;
+	buildingEnumMap["architect"] = Koopman;
 	buildingEnumMap["condotierre"] = Condotierre;
-	buildingEnumMap["keuze"] = Keuze;
+	buildingEnumMap["choice"] = Keuze;
 
 	m_name = "error_no_name";
 	dead = false;
+	abilityUsed = false;
 }
 
 bool PlayerCard::CanDoCommand(std::shared_ptr<ICommand> command){
@@ -77,4 +78,11 @@ void PlayerCard::Die(std::shared_ptr <Player> player)
 bool PlayerCard::IsDead()
 {
 	return dead;
+}
+
+void PlayerCard::Reset()
+{
+	abilityUsed = false;
+	owner = nullptr;
+	dead = false;
 }

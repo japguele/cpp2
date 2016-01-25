@@ -108,6 +108,8 @@ void Game::EndTurn() {
 			for each (std::shared_ptr<PlayerCard> v in deck->GetAllPlayerCards()) {
 				m_queplayers.push(v);
 			}
+
+			Preparation();
 			//SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
 			//p->Print(std::shared_ptr<Game>(this));
 		}
@@ -143,6 +145,7 @@ void Game::EndTurn() {
 				currentRol->GetOwner()->set_turn(true);
 				currentRol->GetOwner()->Setpreturn(true);
 				SendMessageToAll("Player " + currentRol->GetOwner()->get_name() + " its your turn \r\n");
+				currentRol->GetOwner()->Print();
 			}
 			}
 			else{

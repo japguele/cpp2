@@ -20,6 +20,7 @@ public:
 	std::shared_ptr<Player> GetOwner();
 
 	bool IsDead();
+	void Reset();
 
 	virtual void StartTurn(std::shared_ptr<Player> player);
 	virtual bool UseAbility(std::string target);
@@ -29,6 +30,7 @@ protected:
 	std::string m_name;
 	std::set<std::shared_ptr<ICommand>> m_commands;
 	PlayerType type;
+	bool abilityUsed;
 	std::shared_ptr<Player> owner = nullptr;
 	bool dead;
 

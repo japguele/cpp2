@@ -19,9 +19,13 @@ void AbilityCommand::Execute(const ClientCommand command) {
 		
 		for each (auto role in roles)
 		{
-			if (role->GetName() == command.get_strings().at(1))
+			if (command.get_strings().size() > 0 && role->GetName() == command.get_strings().at(1) && !role->IsDead())
 			{
-				role->UseAbility(command.get_strings().at(2));
+				if(command.get_strings().size() > 2)
+					role->UseAbility(command.get_strings().at(2));
+
+				else
+					role->UseAbility("");
 			}
 		}
 	}

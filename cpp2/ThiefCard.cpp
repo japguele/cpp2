@@ -21,14 +21,32 @@ bool ThiefCard::UseAbility( std::string target)
 	if (iValue != playerEnumMap.end())
 	{
 		for each (auto card in Game::getInstance().GetDeck()->GetAllPlayerCards())
-		{
-			if (card->GetOwner() != nullptr)
+		{			
+			if (card->GetOwner() != nullptr && card->GetName() == target)
 			{
 				owner->AddGoldAmount(card->GetOwner()->GetGoldAmount());
 				card->GetOwner()->SetGoldAmount(0);
 				success = true;
+
+				std::string message = "You have stolen all gold pieces from the " + target;
+				message += "\r\n";
+				owner->get_client()->write(message);
+
+				abilityUsed = true;
+			}
+			else
+			{
+				std::string message = "Target could not be found: " + target;
+				message += "\r\n";
+				owner->get_client()->write(message);
 			}
 		}
+	}
+	else
+	{
+		std::string message = "Target does not exist: " + target;
+		message += "\r\n";
+		owner->get_client()->write(message);
 	}
 
 	return success;

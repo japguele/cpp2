@@ -34,6 +34,10 @@ bool MerchantCard::UseAbility(std::string target)
 	int amount = 1;
 	owner->AddGoldAmount(Game::getInstance().GetDeck()->TakeGoldPieces(amount));
 	success = true;
+	
+	std::string message = "You have received extra gold!";
+	message += "\r\n";
+	owner->get_client()->write(message);
 
 	return success;
 }

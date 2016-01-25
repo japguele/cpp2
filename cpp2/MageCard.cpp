@@ -22,13 +22,32 @@ bool MageCard::UseAbility( std::string target)
 	{
 		for each (auto card in Game::getInstance().GetDeck()->GetAllPlayerCards())
 		{
-			if (card->GetOwner() != nullptr)
+			if (card->GetOwner() != nullptr && card->GetName() == target)
 			{
 				auto temp = owner->get_buildcards();
 				owner->set_buildcards(card->GetOwner()->get_buildcards());
 				card->GetOwner()->set_buildcards(temp);
+				success = true;
+
+				std::string message = "You have switched with the hand of the " + target;
+				message += "\r\n";
+				owner->get_client()->write(message);
+
+				abilityUsed = true;
+			}
+			else
+			{
+				std::string message = "Target could not be found: " + target;
+				message += "\r\n";
+				owner->get_client()->write(message);
 			}
 		}
+	}
+	else
+	{
+		std::string message = "Target does not exist: " + target;
+		message += "\r\n";
+		owner->get_client()->write(message);
 	}
 
 	return success;

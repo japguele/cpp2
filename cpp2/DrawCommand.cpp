@@ -47,23 +47,20 @@ void DrawCommand::Execute(const ClientCommand command) {
 					message = message + std::to_string(cards.at(i)->get_gold()) + ") : \r\n";
 				}
 				message += "\r\n\n";
-				message += "Select which one you want to discard";
+				message += "Select which one you want to discard\r\n";
 				command.get_client()->write(message);
 
 				int y  = -1;
-				while (y == -1 ||( !(y < cards.size()) && !(y > -1))){
-					
-					
+				while (y == -1 ||( !(y < cards.size()) && !(y > -1)))
+				{		
 					y = atoi(command.get_client()->readline().c_str());
-						
-					
-					
 				}
 			
 
+				auto temp = cards[y];
 				cards.erase(cards.begin() + y);
-				command.get_client()->write("removed card : " + cards.at(y)->get_name() + " \n");
-				command.get_client()->write("Please select an action");
+				command.get_client()->write("removed card : " + temp->get_name() + " \n");
+				command.get_client()->write("Please select an action\r\n");
 				command.get_player()->add_buildcards(cards);
 				command.get_player()->Setpreturn(false);
 
