@@ -26,7 +26,7 @@ namespace machiavelli {
 }
 
 static Sync_queue<ClientCommand> queu;
-GameController game;
+std::shared_ptr<GameController> game;
 void consume_command() // runs in its own thread
 {
     try {
@@ -36,7 +36,7 @@ void consume_command() // runs in its own thread
 			shared_ptr<Player> player {command.get_player()};
 			try {
 				// TODO handle command here
-				game.Execute(player, command);
+				game->Execute(player, command);
 				*client << "\r\n" << machiavelli::prompt;
 			//	*client << player->get_name() << ", you wrote: '" << command.get_cmd() << "', but I'll ignore that for now.\r\n" << machiavelli::prompt;
 			} catch (const exception& ex) {
@@ -94,7 +94,8 @@ void handle_client(shared_ptr<Socket> client) // this function runs in a separat
 
 int main(int argc, const char * argv[])
 {
-	game = GameController();
+	game = std::make_shared<GameController>();
+
     // start command consumer thread
     thread consumer {consume_command};
 

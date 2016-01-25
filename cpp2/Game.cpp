@@ -14,7 +14,7 @@ Game::Game(std::shared_ptr<CommandController> controller)
 
 Game::~Game()
 {
-
+	printf("Game Destroyed");
 }
 
 const std::vector<std::shared_ptr<Player>> Game::GetPlayers(){
@@ -67,8 +67,16 @@ void Game::ShuffleAcordingToPlayerCards(){
 	//TODO sort to bij rules of player volgorde
 
 }
-void Game::EndTurn(){
-	
+
+
+void Game::EndTurn()
+{
+	std::shared_ptr<Player> player = m_queplayers.front();
+	player->set_turn(false);
+	m_queplayers.pop();
+	m_queplayers.push(player);
+	m_queplayers.front()->set_turn(true);
+
 	
 	
 	if (phase == Phase::CharacterPhase){
@@ -112,17 +120,26 @@ void Game::EndTurn(){
 			
 			
 
+
 			//SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
 
 
 
 			//p->Print(std::shared_ptr<Game>(this));
+
+			//prepare game for the first round
+			Preparation();
+
+			SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
+			m_queplayers.front().get()->Print(std::shared_ptr<Game>(this));
+
 		}
 		else{
 			SendMessageToAll("Player " + p->get_name() + " please remove one Character card\r\n");
 			p->get_client()->write("Remaining cards : \r\n" + deck->GetRemainingPlayerCardsString());
 		}
 	}
+
 	if (phase == Phase::GamePhase)
 	{
 		for each (auto player in m_players)

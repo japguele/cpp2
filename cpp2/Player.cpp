@@ -44,7 +44,7 @@ void Player::Print(std::shared_ptr<Game> game)
 
 		message += buildings->at(i)->get_name() + " (";
 		message += iValue->second + ", ";
-		message += buildings->at(i)->get_gold() + "):\r\n";
+		message += std::to_string(buildings->at(i)->get_gold()) + "):\r\n";
 	}
 	message += "\r\n\n";
 
@@ -55,7 +55,7 @@ void Player::Print(std::shared_ptr<Game> game)
 
 		message += m_cards->at(i)->get_name() + " (";		
 		message += iValue->second + ", ";
-		message += m_cards->at(i)->get_gold() + ":\r\n";
+		message += std::to_string(m_cards->at(i)->get_gold()) + "):\r\n";
 	}	
 	message += "\r\n\n";
 

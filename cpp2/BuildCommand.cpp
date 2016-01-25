@@ -12,6 +12,8 @@ BuildCommand::~BuildCommand()
 }
 
 void BuildCommand::Execute(std::shared_ptr<Game> game, const ClientCommand command) {
+	bool success = false;
+
 	if (command.get_player()->get_turn())
 	{
 		for (int i = 0; i < command.get_player()->get_buildcards()->size(); i++)
@@ -27,7 +29,13 @@ void BuildCommand::Execute(std::shared_ptr<Game> game, const ClientCommand comma
 					//Build
 					command.get_player()->add_building(command.get_player()->get_buildcards()->at(i));
 					command.get_player()->remove_buildcard(command.get_player()->get_buildcards()->at(i));
+
+					success = true;
 				}
+			}
+			else
+			{
+				command.get_client()->write("You do not have enough money to buy that building!");
 			}
 		}
 	}

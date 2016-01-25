@@ -46,4 +46,5 @@ std::shared_ptr<ICommand> CommandController::GetCommand(ClientCommand command)
 
 CommandController::~CommandController()
 {
+	printf("Command controller Destroyed");
 }
