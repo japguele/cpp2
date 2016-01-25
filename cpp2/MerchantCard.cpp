@@ -30,14 +30,22 @@ void MerchantCard::StartTurn(std::shared_ptr<Player> player)
 bool MerchantCard::UseAbility(std::string target)
 {
 	bool success = false;
-
-	int amount = 1;
-	owner->AddGoldAmount(Game::getInstance().GetDeck()->TakeGoldPieces(amount));
-	success = true;
+	if (!abilityUsed)
+	{	
+		int amount = 1;
+		owner->AddGoldAmount(Game::getInstance().GetDeck()->TakeGoldPieces(amount));
+		success = true;
 	
-	std::string message = "You have received extra gold!";
-	message += "\r\n";
-	owner->get_client()->write(message);
-
+		std::string message = "You have received extra gold!";
+		message += "\r\n";
+		owner->get_client()->write(message);
+		abilityUsed = true;
+	}
+	else
+	{
+		std::string message = "You have already used this ability this turn";
+		message += "\r\n";
+		owner->get_client()->write(message);
+	}
 	return success;
 }

@@ -17,6 +17,8 @@ void AbilityCommand::Execute(const ClientCommand command) {
 	{
 		auto roles = command.get_player()->GetCurrentRoles();
 		
+		bool abilityUsed = false;
+
 		for each (auto role in roles)
 		{
 			if (command.get_strings().size() > 0 && role->GetName() == command.get_strings().at(1) && !role->IsDead())
@@ -26,7 +28,16 @@ void AbilityCommand::Execute(const ClientCommand command) {
 
 				else
 					role->UseAbility("");
-			}
+
+				abilityUsed = true;
+			}	
+		}
+
+		if (!abilityUsed)
+		{
+			std::string message = "Ability could not be found!";
+			message += "\r\n";
+			command.get_player()->get_client()->write(message);
 		}
 	}
 }

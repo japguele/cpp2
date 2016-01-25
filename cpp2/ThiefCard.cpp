@@ -17,37 +17,45 @@ bool ThiefCard::UseAbility( std::string target)
 {
 	bool success = false;
 
-	std::map <std::string, PlayerType>::const_iterator iValue = playerEnumMap.find(target);
-	if (iValue != playerEnumMap.end())
+	if (!abilityUsed)
 	{
-		for each (auto card in Game::getInstance().GetDeck()->GetAllPlayerCards())
-		{			
-			if (card->GetOwner() != nullptr && card->GetName() == target)
+		std::map <std::string, PlayerType>::const_iterator iValue = playerEnumMap.find(target);
+		if (iValue != playerEnumMap.end())
+		{
+			for each (auto card in Game::getInstance().GetDeck()->GetAllPlayerCards())
 			{
-				owner->AddGoldAmount(card->GetOwner()->GetGoldAmount());
-				card->GetOwner()->SetGoldAmount(0);
-				success = true;
+				if (card->GetOwner() != nullptr && card->GetName() == target)
+				{
+					owner->AddGoldAmount(card->GetOwner()->GetGoldAmount());
+					card->GetOwner()->SetGoldAmount(0);
+					success = true;
 
-				std::string message = "You have stolen all gold pieces from the " + target;
-				message += "\r\n";
-				owner->get_client()->write(message);
+					std::string message = "You have stolen all gold pieces from the " + target;
+					message += "\r\n";
+					owner->get_client()->write(message);
 
-				abilityUsed = true;
+					abilityUsed = true;
+				}
+				else
+				{
+					std::string message = "Target could not be found: " + target;
+					message += "\r\n";
+					owner->get_client()->write(message);
+				}
 			}
-			else
-			{
-				std::string message = "Target could not be found: " + target;
-				message += "\r\n";
-				owner->get_client()->write(message);
-			}
+		}
+		else
+		{
+			std::string message = "Target does not exist: " + target;
+			message += "\r\n";
+			owner->get_client()->write(message);
 		}
 	}
 	else
 	{
-		std::string message = "Target does not exist: " + target;
+		std::string message = "You have already used this ability this turn";
 		message += "\r\n";
 		owner->get_client()->write(message);
 	}
-
 	return success;
 }

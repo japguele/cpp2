@@ -17,35 +17,44 @@ bool MageCard::UseAbility( std::string target)
 {
 	bool success = false;
 
-	std::map <std::string, PlayerType>::const_iterator iValue = playerEnumMap.find(target);
-	if (iValue != playerEnumMap.end())
+	if(!abilityUsed)
 	{
-		for each (auto card in Game::getInstance().GetDeck()->GetAllPlayerCards())
+		std::map <std::string, PlayerType>::const_iterator iValue = playerEnumMap.find(target);
+		if (iValue != playerEnumMap.end())
 		{
-			if (card->GetOwner() != nullptr && card->GetName() == target)
+			for each (auto card in Game::getInstance().GetDeck()->GetAllPlayerCards())
 			{
-				auto temp = owner->get_buildcards();
-				owner->set_buildcards(card->GetOwner()->get_buildcards());
-				card->GetOwner()->set_buildcards(temp);
-				success = true;
+				if (card->GetOwner() != nullptr && card->GetName() == target)
+				{
+					auto temp = owner->get_buildcards();
+					owner->set_buildcards(card->GetOwner()->get_buildcards());
+					card->GetOwner()->set_buildcards(temp);
+					success = true;
 
-				std::string message = "You have switched with the hand of the " + target;
-				message += "\r\n";
-				owner->get_client()->write(message);
+					std::string message = "You have switched with the hand of the " + target;
+					message += "\r\n";
+					owner->get_client()->write(message);
 
-				abilityUsed = true;
+					abilityUsed = true;
+				}
+				else
+				{
+					std::string message = "Target could not be found: " + target;
+					message += "\r\n";
+					owner->get_client()->write(message);
+				}
 			}
-			else
-			{
-				std::string message = "Target could not be found: " + target;
-				message += "\r\n";
-				owner->get_client()->write(message);
-			}
+		}
+		else
+		{
+			std::string message = "Target does not exist: " + target;
+			message += "\r\n";
+			owner->get_client()->write(message);
 		}
 	}
 	else
 	{
-		std::string message = "Target does not exist: " + target;
+		std::string message = "You have already used this ability this turn";
 		message += "\r\n";
 		owner->get_client()->write(message);
 	}
