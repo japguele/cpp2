@@ -69,77 +69,46 @@ void Game::ShuffleAcordingToPlayerCards(){
 }
 
 
-void Game::EndTurn()
-{
-	std::shared_ptr<Player> player = m_queplayers.front();
-	player->set_turn(false);
-	m_queplayers.pop();
-	m_queplayers.push(player);
-	m_queplayers.front()->set_turn(true);
-
-	
-	
-	if (phase == Phase::CharacterPhase){
-
+void Game::EndTurn() {
+	if (phase == Phase::CharacterPhase) {
 		for (auto it = m_players.begin(); it != m_players.end(); ++it) {
-			if (it->get()->get_turn()){
+			if (it->get()->get_turn()) {
 				it->get()->set_turn(false);
 
 			}
-			else{
+			else {
 				//TODO does not work more then 2 players
 				it->get()->set_turn(true);
 			}
 			/* std::cout << *it; ... */
 		}
 
-	
 		std::shared_ptr<Player> p;
 
-		for each(auto player in m_players){
-
-			if (player->get_turn()){
+		for each(auto player in m_players) {
+			if (player->get_turn()) {
 				p = player;
 			}
-
 		}
-		
 
-		if (deck->GetRemainingPlayerCards()->size() < 1){
-			SendMessageToAll("All Playercards have been selected\r\n");			
+		if (deck->GetRemainingPlayerCards()->size() < 1) {
+			SendMessageToAll("All Playercards have been selected\r\n");
 
 			ShuffleAcordingToPlayerCards();
 			characterPhase = false;
 			phase = Phase::GamePhase;
 
-			
-
-			for each (std::shared_ptr<PlayerCard> v in deck->GetAllPlayerCards()){
+			for each (std::shared_ptr<PlayerCard> v in deck->GetAllPlayerCards()) {
 				m_queplayers.push(v);
 			}
-			
-			
-
-
 			//SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
-
-
-
 			//p->Print(std::shared_ptr<Game>(this));
-
-			//prepare game for the first round
-			Preparation();
-
-			SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
-			m_queplayers.front().get()->Print(std::shared_ptr<Game>(this));
-
 		}
-		else{
+		else {
 			SendMessageToAll("Player " + p->get_name() + " please remove one Character card\r\n");
 			p->get_client()->write("Remaining cards : \r\n" + deck->GetRemainingPlayerCardsString());
 		}
 	}
-
 	if (phase == Phase::GamePhase)
 	{
 		for each (auto player in m_players)
@@ -149,28 +118,23 @@ void Game::EndTurn()
 		m_queplayers.pop();
 		std::shared_ptr<PlayerCard> currentRol = m_queplayers.front();
 
-		while ((currentRol->IsDead() || currentRol->GetOwner() == nullptr) && m_queplayers.size() >= 0){
+		while ((currentRol->IsDead() || currentRol->GetOwner() == nullptr) && m_queplayers.size() >= 0) {
 			m_queplayers.pop();
 			currentRol = m_queplayers.front();
 		}
-		if (currentRol->IsDead() || m_queplayers.size() == 0 || currentRol->GetOwner() == nullptr){
-			
+		if (currentRol->IsDead() || m_queplayers.size() == 0 || currentRol->GetOwner() == nullptr) {
+
 			EndGameTurn();
 
 			//TODO start new round
-
-
 		}
-		else{
+		else {
 			currentRol->GetOwner()->set_turn(true);
 			SendMessageToAll("Player " + currentRol->GetOwner()->get_name() + " its your turn \r\n");
 		}
-
-
 	}
-
-		
 }
+
 void Game::EndGameTurn(){
 	for each (std::shared_ptr<Player> p in m_players){
 		

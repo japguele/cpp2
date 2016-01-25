@@ -11,7 +11,7 @@ class Game
 public:
 	Game(std::shared_ptr<CommandController> controller);
 	~Game();
-	void JoinGame(std::shared_ptr < Player > player );
+	void JoinGame(std::shared_ptr < Player > player);
 	const std::vector<std::shared_ptr<Player>> GetPlayers();
 	void SendMessageToAll(const std::string message);
 	bool Started();
@@ -30,10 +30,9 @@ private:
 	bool started = false;
 	bool characterPhase = false;
 	Phase phase = Phase::CharacterPhase;
-	
+
 	std::queue<std::shared_ptr<PlayerCard>> m_queplayers;
 	std::vector<std::shared_ptr<Player>> m_players;
-	
+
 	std::shared_ptr<Player> currentPlayer;
 };
-
