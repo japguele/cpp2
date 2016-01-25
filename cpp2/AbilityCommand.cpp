@@ -11,7 +11,7 @@ AbilityCommand::~AbilityCommand()
 {
 }
 
-void AbilityCommand::Execute(std::shared_ptr<Game> game, const ClientCommand command) {
+void AbilityCommand::Execute(const ClientCommand command) {
 	//Todo gebruik de speciale ability van de huidige rol
 	if (command.get_player()->get_turn()) 
 	{
@@ -21,7 +21,7 @@ void AbilityCommand::Execute(std::shared_ptr<Game> game, const ClientCommand com
 		{
 			if (role->GetName() == command.get_strings().at(1))
 			{
-				role->UseAbility(game, command.get_strings().at(2));
+				role->UseAbility(command.get_strings().at(2));
 			}
 		}
 	}

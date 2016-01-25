@@ -11,15 +11,15 @@ TakeCommand::~TakeCommand()
 {
 }
 
-void TakeCommand::Execute(std::shared_ptr<Game> game, const ClientCommand command) {
+void TakeCommand::Execute(const ClientCommand command) {
 	//Todo geef 2 goudstukken aan de speler
-	if (game->GetPhase() == Phase::GamePhase){
+	if (Game::getInstance().GetPhase() == Phase::GamePhase){
 		if (command.get_player()->get_turn())
 		{
 			if (command.get_player()->Getpreturn()){
 				command.get_player()->Setpreturn(false);
 				int amount = 2;
-				command.get_player()->AddGoldAmount(game->GetDeck()->TakeGoldPieces(amount));
+				command.get_player()->AddGoldAmount(Game::getInstance().GetDeck()->TakeGoldPieces(amount));
 				
 
 				std::string message = "You have received ";

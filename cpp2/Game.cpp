@@ -3,7 +3,8 @@
 #include "PlayerCard.h"
 #include <unordered_map>
 #include <algorithm>
-Game::Game(std::shared_ptr<CommandController> controller)
+
+void Game::Init(std::shared_ptr<CommandController> controller)
 {
 	deck = std::shared_ptr<Deck>(new Deck(controller));
 	m_queplayers = std::queue<std::shared_ptr<PlayerCard>>();

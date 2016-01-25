@@ -12,9 +12,9 @@ DrawCommand::~DrawCommand()
 {
 }
 
-void DrawCommand::Execute(std::shared_ptr<Game> game, const ClientCommand command) {
+void DrawCommand::Execute(const ClientCommand command) {
 	//TODO: geef 2 kaarten aan speler
-	if (game->GetPhase() == Phase::GamePhase){
+	if (Game::getInstance().GetPhase() == Phase::GamePhase){
 		if (command.get_player()->get_turn())
 		{
 			if (command.get_player()->Getpreturn()){
@@ -31,7 +31,7 @@ void DrawCommand::Execute(std::shared_ptr<Game> game, const ClientCommand comman
 					{ Keuze, "keuze" }
 				};
 
-				std::vector<std::shared_ptr<BuildCard>> cards = game->GetDeck()->DrawCards(amount);
+				std::vector<std::shared_ptr<BuildCard>> cards = Game::getInstance().GetDeck()->DrawCards(amount);
 				std::string message;
 
 				message += "You have drawn: \r\n";

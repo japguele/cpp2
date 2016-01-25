@@ -29,11 +29,11 @@ std::shared_ptr<Player> BuildCard::GetOwner()
 	return owner;
 }
 
-void BuildCard::Destroy(std::shared_ptr<Game> game)
+void BuildCard::Destroy()
 {
 	if (owner != nullptr)
 	{
-		game->GetDeck()->AddUsedCard(owner->remove_building(std::shared_ptr<BuildCard>(this)));
+		Game::getInstance().GetDeck()->AddUsedCard(owner->remove_building(std::shared_ptr<BuildCard>(this)));
 	}
 }
 

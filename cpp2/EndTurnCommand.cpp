@@ -11,9 +11,9 @@ EndTurnCommand::~EndTurnCommand()
 {
 }
 
-void EndTurnCommand::Execute(std::shared_ptr<Game> game, const ClientCommand command) {
+void EndTurnCommand::Execute(const ClientCommand command) {
 	if (command.get_player()->get_turn()){
-		game->EndTurn();
+		Game::getInstance().EndTurn();
 	}
 
 }

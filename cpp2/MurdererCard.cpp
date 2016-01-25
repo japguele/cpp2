@@ -13,18 +13,18 @@ MurdererCard::~MurdererCard()
 {
 }
 
-bool MurdererCard::UseAbility(std::shared_ptr<Game> game, std::string target)
+bool MurdererCard::UseAbility(std::string target)
 {
 	bool success = false;
 	
 	std::map <std::string, PlayerType>::const_iterator iValue = playerEnumMap.find(target);
 	if (iValue != playerEnumMap.end())
 	{
-		for each (auto card in game->GetDeck()->GetAllPlayerCards())
+		for each (auto card in Game::getInstance().GetDeck()->GetAllPlayerCards())
 		{
 			if (card->GetType() == iValue->second)
 			{
-				card->Die(game->GetCurrentPlayer());
+				card->Die(Game::getInstance().GetCurrentPlayer());
 				success = true;
 			}
 		}		

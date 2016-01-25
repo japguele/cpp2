@@ -92,7 +92,7 @@ public:
 	void SetGoldAmount(int amount) { goldPieces = amount; }
 	int GetGoldAmount() { return goldPieces;  }
 
-	void Print(std::shared_ptr<Game> game);
+	void Print();
 	bool GetKing(){ return isKing; }
 	void SetKing(bool k){ isKing = k; }
 	bool Getpreturn(){ return preturn; }

@@ -11,7 +11,7 @@ BuildCommand::~BuildCommand()
 {
 }
 
-void BuildCommand::Execute(std::shared_ptr<Game> game, const ClientCommand command) {
+void BuildCommand::Execute(const ClientCommand command) {
 	bool success = false;
 
 	if (command.get_player()->get_turn())
@@ -24,7 +24,7 @@ void BuildCommand::Execute(std::shared_ptr<Game> game, const ClientCommand comma
 				{
 					//Pay
 					command.get_player()->SetGoldAmount(command.get_player()->GetGoldAmount() - command.get_player()->get_buildcards()->at(i)->get_gold());
-					game->GetDeck()->AddGoldPieces(command.get_player()->GetGoldAmount() - command.get_player()->get_buildcards()->at(i)->get_gold());
+					Game::getInstance().GetDeck()->AddGoldPieces(command.get_player()->GetGoldAmount() - command.get_player()->get_buildcards()->at(i)->get_gold());
 
 					//Build
 					command.get_player()->add_building(command.get_player()->get_buildcards()->at(i));

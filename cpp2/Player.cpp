@@ -11,7 +11,7 @@
 #include "Game.h"
 using namespace std;
 
-void Player::Print(std::shared_ptr<Game> game)
+void Player::Print()
 {
 	std::string message;
 

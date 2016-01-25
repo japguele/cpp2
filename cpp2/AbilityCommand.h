@@ -7,6 +7,6 @@ public:
 	AbilityCommand();
 	~AbilityCommand();
 
-	void Execute(std::shared_ptr<Game> game, const ClientCommand command);
+	void Execute( const ClientCommand command);
 };
 

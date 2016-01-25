@@ -7,6 +7,6 @@ public:
 	ThiefCard(std::shared_ptr<CommandController> controller);
 	~ThiefCard();
 
-	virtual bool UseAbility(std::shared_ptr<Game> game, std::string target) override;
+	virtual bool UseAbility(std::string target) override;
 };
 

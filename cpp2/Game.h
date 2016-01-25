@@ -9,7 +9,14 @@
 class Game
 {
 public:
-	Game(std::shared_ptr<CommandController> controller);
+	static Game& getInstance()
+	{
+		static Game    instance; // Guaranteed to be destroyed.
+		// Instantiated on first use.
+		return instance;
+	}
+	
+	void Init(std::shared_ptr<CommandController> controller);
 	~Game();
 	void JoinGame(std::shared_ptr < Player > player);
 	const std::vector<std::shared_ptr<Player>> GetPlayers();
@@ -28,6 +35,7 @@ public:
 	Phase GetPhase();
 	void ResetKing();
 private:
+	Game(){};
 	std::shared_ptr<Deck> deck;
 	bool started = false;
 	bool characterPhase = false;

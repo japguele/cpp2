@@ -13,7 +13,7 @@ MerchantCard::~MerchantCard()
 {
 }
 
-void MerchantCard::StartTurn(std::shared_ptr<Player> player, std::shared_ptr<Game> game)
+void MerchantCard::StartTurn(std::shared_ptr<Player> player)
 {
 	for (int i = 0; i < player->get_buildcards()->size(); i++)
 	{
@@ -22,17 +22,17 @@ void MerchantCard::StartTurn(std::shared_ptr<Player> player, std::shared_ptr<Gam
 		if (card->get_buildingtype() == BuildingType::Koopman)
 		{
 			int amount = 1;
-			player->AddGoldAmount(game->GetDeck()->TakeGoldPieces(amount));
+			player->AddGoldAmount(Game::getInstance().GetDeck()->TakeGoldPieces(amount));
 		}
 	}
 }
 
-bool MerchantCard::UseAbility(std::shared_ptr<Game> game, std::string target)
+bool MerchantCard::UseAbility(std::string target)
 {
 	bool success = false;
 
 	int amount = 1;
-	owner->AddGoldAmount(game->GetDeck()->TakeGoldPieces(amount));
+	owner->AddGoldAmount(Game::getInstance().GetDeck()->TakeGoldPieces(amount));
 	success = true;
 
 	return success;

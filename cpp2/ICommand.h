@@ -8,6 +8,6 @@ class ICommand
 {
 public:
 
-	virtual void Execute(std::shared_ptr<Game> game, const ClientCommand command) = 0;
+	virtual void Execute(const ClientCommand command) = 0;
 };
 

@@ -6,6 +6,6 @@ class ListCommand :
 public:
 	ListCommand();
 	~ListCommand();
-	void Execute(std::shared_ptr<Game> game, const ClientCommand command);
+	void Execute(const ClientCommand command);
 };
 

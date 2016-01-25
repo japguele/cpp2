@@ -18,7 +18,7 @@ public:
 	void SetOwner(std::shared_ptr<Player> player);
 	std::shared_ptr<Player> GetOwner();
 
-	void Destroy(std::shared_ptr<Game> game);
+	void Destroy();
 private:
 	int m_goldcost;
 	BuildingType m_type;
