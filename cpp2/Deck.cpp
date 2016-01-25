@@ -16,8 +16,7 @@
 Deck::Deck(std::shared_ptr<CommandController> controller)
 {	
 	m_cards = std::vector<std::shared_ptr<BuildCard>>();
-
-	m_playerCardDeck = std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>>(new std::vector<std::shared_ptr<PlayerCard>>());
+	m_playerCard = std::vector<std::shared_ptr<PlayerCard>>();;
 
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(3, BuildingType::Koning,std::string("landgoed"))));
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(4, BuildingType::Koning, std::string("kasteel"))));
@@ -39,15 +38,17 @@ Deck::Deck(std::shared_ptr<CommandController> controller)
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(2, BuildingType::Condotierre, std::string("gevangenis"))));
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(3, BuildingType::Condotierre, std::string("tournooiveld"))));
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(5, BuildingType::Condotierre, std::string("burcht"))));
-	
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new MurdererCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new ThiefCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new MageCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new KingCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new PreacherCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new MerchantCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new ArchitectCard(controller)));
-	m_playerCardDeck->push_back(std::shared_ptr<PlayerCard>(new CondotierreCard(controller)));
+	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new MurdererCard(controller)));
+	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new ThiefCard(controller)));
+	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new MageCard(controller)));
+	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new KingCard(controller)));
+	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new PreacherCard(controller)));
+	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new MerchantCard(controller)));
+	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new ArchitectCard(controller)));
+	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new CondotierreCard(controller)));
+	m_playerCardDeck = std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>>(new std::vector<std::shared_ptr<PlayerCard>>(m_playerCard));
+
+
 	//m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));	
 //	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
 	//m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));

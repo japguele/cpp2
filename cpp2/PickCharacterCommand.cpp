@@ -25,6 +25,7 @@ void PickCharacterCommand::Execute(std::shared_ptr<Game> game, const ClientComma
 					if (it->get()->GetName() == command.get_strings().at(1)){
 						done = true;
 						std::vector<std::shared_ptr<PlayerCard>>  vect = command.get_player()->GetCurrentRoles();
+						it->get()->SetOwner(command.get_player());
 						vect.push_back(*it);
 						command.get_player()->SetCurrentRoles(vect);
 						temp = it;

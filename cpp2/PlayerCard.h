@@ -29,7 +29,7 @@ protected:
 	std::string m_name;
 	std::set<std::shared_ptr<ICommand>> m_commands;
 	PlayerType type;
-	std::shared_ptr<Player> owner;
+	std::shared_ptr<Player> owner = nullptr;
 	bool dead;
 
 	std::map <std::string, PlayerType> playerEnumMap;

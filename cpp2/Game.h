@@ -12,13 +12,14 @@ public:
 	Game(std::shared_ptr<CommandController> controller);
 	~Game();
 	void JoinGame(std::shared_ptr < Player > player );
-	const std::set<std::shared_ptr<Player>> GetPlayers();
+	const std::vector<std::shared_ptr<Player>> GetPlayers();
 	void SendMessageToAll(const std::string message);
 	bool Started();
 	void StartNewGame();
 	void ChooseCharater();
 	void EndTurn();
 	void EndGame();
+	void EndGameTurn();
 	std::shared_ptr<Deck> GetDeck();
 	std::shared_ptr<Player> GetCurrentPlayer();
 	bool CharacterPhase();
@@ -28,10 +29,10 @@ private:
 	std::shared_ptr<Deck> deck;
 	bool started = false;
 	bool characterPhase = false;
-	Phase phase;
-
-	std::queue<std::shared_ptr<Player>> m_queplayers;
-	std::set<std::shared_ptr<Player>> m_players;
+	Phase phase = Phase::CharacterPhase;
+	
+	std::queue<std::shared_ptr<PlayerCard>> m_queplayers;
+	std::vector<std::shared_ptr<Player>> m_players;
 	
 	std::shared_ptr<Player> currentPlayer;
 };

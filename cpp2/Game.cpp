@@ -2,12 +2,12 @@
 #include "Game.h"
 #include "PlayerCard.h"
 #include <unordered_map>
-
+#include <algorithm>
 Game::Game(std::shared_ptr<CommandController> controller)
 {
 	deck = std::shared_ptr<Deck>(new Deck(controller));
-	m_queplayers = std::queue<std::shared_ptr<Player>>();
-	m_players = std::set<std::shared_ptr<Player>>();
+	m_queplayers = std::queue<std::shared_ptr<PlayerCard>>();
+	m_players = std::vector<std::shared_ptr<Player>>();
 	phase = Phase::SetupPhase;
 }
 
@@ -17,21 +17,28 @@ Game::~Game()
 
 }
 
-const std::set<std::shared_ptr<Player>> Game::GetPlayers(){
+const std::vector<std::shared_ptr<Player>> Game::GetPlayers(){
 	return m_players;
 }
 
 void Game::JoinGame(std::shared_ptr < Player > player){
 	std::cout << "heyo";  
-	
-	if (m_players.find(player) == m_players.end()){
-		
-		m_queplayers.push(player);
-		m_players.insert(player);
-		SendMessageToAll("Player " + player->get_name() + " joined the game \n");
+	if (!started){
+		if (!(std::find(m_players.begin(), m_players.end(), player) != m_players.end())){		
+
+			//m_queplayers.push(player);
+			m_players.push_back(player);
+			SendMessageToAll("Player " + player->get_name() + " joined the game \n");
+		}
+		else{
+			player->get_client()->write("You allready Joined");
+		}
+		if (m_players.size() > 1){
+			StartNewGame();
+		}
 	}
-	if (m_players.size() > 1){
-		StartNewGame();
+	else{
+		player->get_client()->write("Games has allready started");
 	}
 }
 
@@ -43,14 +50,14 @@ void Game::StartNewGame(){
 
 	//deck.shuffle();
 	SendMessageToAll("Starting new game \r\n");
-	m_queplayers.front().get()->set_turn(true);
+	m_players.at(0)->set_turn(true);
 
 	SendMessageToAll("Removing one random Charactercard from the deck \r\n");
 
-	m_queplayers.front()->get_client()->write(deck->RemoveCard(0)->GetName() + "has been removed\r\n");
-	SendMessageToAll("Player " + m_queplayers.front()->get_name() + " please select a Character card\r\n");
+	m_players.at(0)->get_client()->write(deck->RemoveCard(0)->GetName() + "has been removed\r\n");
+	SendMessageToAll("Player " + m_players.at(0)->get_name() + " please select a Character card\r\n");
 
-	m_queplayers.front()->get_client()->write("Remaining card : \r\n" + deck->GetRemainingPlayerCardsString());
+	m_players.at(0)->get_client()->write("Remaining card : \r\n" + deck->GetRemainingPlayerCardsString());
 
 }
 void Game::ChooseCharater(){
@@ -62,35 +69,101 @@ void Game::ShuffleAcordingToPlayerCards(){
 }
 void Game::EndTurn(){
 	
-	std::shared_ptr<Player> player = m_queplayers.front();
-	player->set_turn(false);
-	m_queplayers.pop();
-	m_queplayers.push(player);
-	m_queplayers.front()->set_turn(true);
 	
-	if (phase = Phase::CharacterPhase){
+	
+	if (phase == Phase::CharacterPhase){
+
+		for (auto it = m_players.begin(); it != m_players.end(); ++it) {
+			if (it->get()->get_turn()){
+				it->get()->set_turn(false);
+
+			}
+			else{
+				//TODO does not work more then 2 players
+				it->get()->set_turn(true);
+			}
+			/* std::cout << *it; ... */
+		}
+
+	
+		std::shared_ptr<Player> p;
+
+		for each(auto player in m_players){
+
+			if (player->get_turn()){
+				p = player;
+			}
+
+		}
+		
+
 		if (deck->GetRemainingPlayerCards()->size() < 1){
 			SendMessageToAll("All Playercards have been selected\r\n");			
 
 			ShuffleAcordingToPlayerCards();
 			characterPhase = false;
-			phase = Phase::ChoicePhase;
+			phase = Phase::GamePhase;
 
-			SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
-			m_queplayers.front().get()->Print(std::shared_ptr<Game>(this));
+			
+
+			for each (std::shared_ptr<PlayerCard> v in deck->GetAllPlayerCards()){
+				m_queplayers.push(v);
+			}
+			
+			
+
+			//SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
+
+
+
+			//p->Print(std::shared_ptr<Game>(this));
 		}
 		else{
-			SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " please remove one Character card\r\n");
-			m_queplayers.front().get()->get_client()->write("Remaining cards : \r\n" + deck->GetRemainingPlayerCardsString());
+			SendMessageToAll("Player " + p->get_name() + " please remove one Character card\r\n");
+			p->get_client()->write("Remaining cards : \r\n" + deck->GetRemainingPlayerCardsString());
 		}
 	}
-
-	if (phase = Phase::ChoicePhase)
+	if (phase == Phase::GamePhase)
 	{
-		SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
-	}
-}
+		for each (auto player in m_players)
+		{
+			player->set_turn(false);
+		}
+		m_queplayers.pop();
+		std::shared_ptr<PlayerCard> currentRol = m_queplayers.front();
 
+		while ((currentRol->IsDead() || currentRol->GetOwner() == nullptr) && m_queplayers.size() >= 0){
+			m_queplayers.pop();
+			currentRol = m_queplayers.front();
+		}
+		if (currentRol->IsDead() || m_queplayers.size() == 0 || currentRol->GetOwner() == nullptr){
+			
+			EndGameTurn();
+
+			//TODO start new round
+
+
+		}
+		else{
+			currentRol->GetOwner()->set_turn(true);
+			SendMessageToAll("Player " + currentRol->GetOwner()->get_name() + " its your turn \r\n");
+		}
+
+
+	}
+
+		
+}
+void Game::EndGameTurn(){
+	for each (std::shared_ptr<Player> p in m_players){
+		
+
+
+	}
+
+
+
+}
 void Game::Preparation()
 {
 	for each (auto player in m_players)
@@ -148,7 +221,7 @@ void Game::EndGame()
 		if (hasKoning && hasKoopman && hasPrediker && hasCondotierre && hasKeuze)
 			score += 3;
 
-		if (player->get_name() == m_queplayers.back()->get_name())
+		if (player->get_name() == m_queplayers.front()->GetOwner()->get_name())
 		{
 			if (player->get_buildings()->size() >= 8)
 				score += 4;

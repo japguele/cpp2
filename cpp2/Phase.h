@@ -1,5 +1,5 @@
 #pragma once
 enum Phase
 {
-	SetupPhase, CharacterPhase, ChoicePhase, BuildPhase
+	SetupPhase, CharacterPhase, GamePhase, BuildPhase
 };

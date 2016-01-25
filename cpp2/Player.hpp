@@ -77,7 +77,11 @@ public:
 
 	std::shared_ptr<Socket> get_client(){ return m_client; }
 
-	void SetCurrentRoles(std::vector<std::shared_ptr<PlayerCard>> new_roles) { currentRoles = new_roles; }
+	void SetCurrentRoles(std::vector<std::shared_ptr<PlayerCard>> new_roles) 
+	{ 
+		currentRoles = new_roles; 
+	
+	}
 	std::vector<std::shared_ptr<PlayerCard>> GetCurrentRoles() { return currentRoles;  }
 
 	void AddGoldAmount(int amount) { goldPieces = goldPieces + amount; }
@@ -85,7 +89,8 @@ public:
 	int GetGoldAmount() { return goldPieces;  }
 
 	void Print(std::shared_ptr<Game> game);
-
+	bool GetKing(){ return isKing; }
+	bool SetKing(bool k){ isKing = k; }
 private:
 	std::string m_name;
 	std::vector<std::shared_ptr<PlayerCard>> currentRoles;
@@ -95,6 +100,7 @@ private:
 
 	int goldPieces;
 	bool myTurn;
+	bool isKing = false;
 };
 
 #endif /* Player_hpp */
