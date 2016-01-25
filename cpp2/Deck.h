@@ -25,6 +25,8 @@ public:
 	std::shared_ptr<PlayerCard> RemoveCard(int x);
 	std::string GetRemainingPlayerCardsString();
 	void RoundReset();
+	void ShuffleBuildDeck();
+	void ShufflePlayerCards();
 
 private:
 	std::vector<std::shared_ptr<BuildCard>> m_cards;

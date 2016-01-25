@@ -162,6 +162,9 @@
     <ClInclude Include="EndTurnCommand.h">
       <Filter>Header Files\Model\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="CheatCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -261,6 +264,9 @@
       <Filter>Source Files\Model\Commands</Filter>
     </ClCompile>
     <ClCompile Include="EndTurnCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatCommand.cpp">
       <Filter>Source Files\Model\Commands</Filter>
     </ClCompile>
   </ItemGroup>

@@ -86,6 +86,7 @@
     <ClInclude Include="BuildCommand.h" />
     <ClInclude Include="BuildingType.h" />
     <ClInclude Include="ChatCommand.h" />
+    <ClInclude Include="CheatCommand.h" />
     <ClInclude Include="ClientCommand.h" />
     <ClInclude Include="CommandController.h" />
     <ClInclude Include="CondotierreCard.h" />
@@ -125,6 +126,7 @@
     <ClCompile Include="BuildCard.cpp" />
     <ClCompile Include="BuildCommand.cpp" />
     <ClCompile Include="ChatCommand.cpp" />
+    <ClCompile Include="CheatCommand.cpp" />
     <ClCompile Include="CommandController.cpp" />
     <ClCompile Include="CondotierreCard.cpp" />
     <ClCompile Include="cpp2.cpp" />

@@ -40,7 +40,7 @@ void DrawCommand::Execute(const ClientCommand command) {
 				{
 					std::map <BuildingType, std::string>::const_iterator iValue = enumMap.find(cards.at(i)->get_buildingtype());
 
-					message = message + "[" + std::to_string(i);
+					message = message + "[" + std::to_string(i + 1);
 					message += "]";
 					message += cards.at(i)->get_name() + " (";
 					message += iValue->second + ", ";
@@ -51,18 +51,19 @@ void DrawCommand::Execute(const ClientCommand command) {
 				command.get_client()->write(message);
 
 				int y  = -1;
-				while (y == -1 ||( !(y < cards.size()) && !(y > -1))){
-					
-					
-					y = atoi(command.get_client()->readline().c_str());
+				while (y == -1 ||( !(y < cards.size()) && !(y > 0))){
+					command.get_client()->write(" \r\n");
+					std::string a = command.get_client()->readline();
+					y = atoi(a.c_str());
 						
 					
 					
 				}
 			
 
-				cards.erase(cards.begin() + y);
-				command.get_client()->write("removed card : " + cards.at(y)->get_name() + " \n");
+			
+				command.get_client()->write("removed card : " + cards.at(y-1)->get_name() + " \n");
+				cards.erase(cards.begin() + (y - 1));
 				command.get_client()->write("Please select an action");
 				command.get_player()->add_buildcards(cards);
 				command.get_player()->Setpreturn(false);
