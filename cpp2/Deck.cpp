@@ -121,7 +121,10 @@ std::vector<std::shared_ptr<PlayerCard>> Deck::GetAllPlayerCards()
 {
 	return m_playerCard;
 }
+void Deck::RoundReset(){
+	m_playerCardDeck = std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>>(new std::vector<std::shared_ptr<PlayerCard>>(m_playerCard));
 
+}
 std::shared_ptr<PlayerCard> Deck::RemoveCard(int x){
 	if (x < m_playerCardDeck->size()){
 		std::shared_ptr<PlayerCard> card = m_playerCardDeck->at(x);

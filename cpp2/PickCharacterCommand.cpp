@@ -23,6 +23,11 @@ void PickCharacterCommand::Execute(std::shared_ptr<Game> game, const ClientComma
 				for (auto it = vec->begin(); it != vec->end() && !done; ++it) {
 					/* std::cout << *-> ... */
 					if (it->get()->GetName() == command.get_strings().at(1)){
+						if (it->get()->GetName() == "king"){
+							game->ResetKing();
+							command.get_player()->SetKing(true);
+							
+						}
 						done = true;
 						std::vector<std::shared_ptr<PlayerCard>>  vect = command.get_player()->GetCurrentRoles();
 						it->get()->SetOwner(command.get_player());

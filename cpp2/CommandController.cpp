@@ -7,6 +7,7 @@
 #include "AbilityCommand.h"
 #include "PrintCommand.h"
 #include "BuildCommand.h"
+#include "EndTurnCommand.h"
 #include "ICommand.h"
 CommandController::CommandController()
 {
@@ -18,6 +19,7 @@ CommandController::CommandController()
 
 	commands.insert({ "remove", std::shared_ptr<RemoveCharacterCommand>(new RemoveCharacterCommand()) });
 	commands.insert({ "pick", std::shared_ptr<PickCharacterCommand>(new PickCharacterCommand()) });
+	commands.insert({ "endturn", std::shared_ptr<EndTurnCommand>(new EndTurnCommand()) });
 
 	commands.insert({ "gold", std::shared_ptr<TakeCommand>(new TakeCommand()) });
 	commands.insert({ "draw", std::shared_ptr<DrawCommand>(new DrawCommand()) });

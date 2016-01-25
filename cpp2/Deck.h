@@ -24,7 +24,7 @@ public:
 	std::vector<std::shared_ptr<BuildCard>> DrawCards(int amount);
 	std::shared_ptr<PlayerCard> RemoveCard(int x);
 	std::string GetRemainingPlayerCardsString();
-
+	void RoundReset();
 
 private:
 	std::vector<std::shared_ptr<BuildCard>> m_cards;

@@ -82,6 +82,10 @@ public:
 		currentRoles = new_roles; 
 	
 	}
+
+	void RemoveCurrentRoles(){
+		currentRoles.clear();
+	}
 	std::vector<std::shared_ptr<PlayerCard>> GetCurrentRoles() { return currentRoles;  }
 
 	void AddGoldAmount(int amount) { goldPieces = goldPieces + amount; }
@@ -90,7 +94,9 @@ public:
 
 	void Print(std::shared_ptr<Game> game);
 	bool GetKing(){ return isKing; }
-	bool SetKing(bool k){ isKing = k; }
+	void SetKing(bool k){ isKing = k; }
+	bool Getpreturn(){ return preturn; }
+	void Setpreturn(bool pre){ preturn = pre; }
 private:
 	std::string m_name;
 	std::vector<std::shared_ptr<PlayerCard>> currentRoles;
@@ -101,6 +107,7 @@ private:
 	int goldPieces;
 	bool myTurn;
 	bool isKing = false;
+	bool preturn = true;
 };
 
 #endif /* Player_hpp */

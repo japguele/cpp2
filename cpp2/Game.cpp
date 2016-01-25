@@ -16,7 +16,11 @@ Game::~Game()
 {
 	printf("Game Destroyed");
 }
-
+void Game::ResetKing(){
+	for (std::shared_ptr<Player> p : m_players){
+		p->SetKing(false);
+	}
+}
 const std::vector<std::shared_ptr<Player>> Game::GetPlayers(){
 	return m_players;
 }
@@ -68,7 +72,9 @@ void Game::ShuffleAcordingToPlayerCards(){
 
 }
 
-
+Phase Game::GetPhase(){
+	return phase;
+}
 void Game::EndTurn() {
 	if (phase == Phase::CharacterPhase) {
 		for (auto it = m_players.begin(); it != m_players.end(); ++it) {
@@ -114,34 +120,61 @@ void Game::EndTurn() {
 		for each (auto player in m_players)
 		{
 			player->set_turn(false);
-		}
-		m_queplayers.pop();
-		std::shared_ptr<PlayerCard> currentRol = m_queplayers.front();
 
-		while ((currentRol->IsDead() || currentRol->GetOwner() == nullptr) && m_queplayers.size() >= 0) {
+		}
+		std::shared_ptr<PlayerCard> currentRol = nullptr;
+			if (m_queplayers.size() > 1){
 			m_queplayers.pop();
 			currentRol = m_queplayers.front();
-		}
-		if (currentRol->IsDead() || m_queplayers.size() == 0 || currentRol->GetOwner() == nullptr) {
 
-			EndGameTurn();
 
-			//TODO start new round
-		}
-		else {
-			currentRol->GetOwner()->set_turn(true);
-			SendMessageToAll("Player " + currentRol->GetOwner()->get_name() + " its your turn \r\n");
-		}
+			while ((currentRol->IsDead() || currentRol->GetOwner() == nullptr) && m_queplayers.size() > 1) {
+				m_queplayers.pop();
+				currentRol = m_queplayers.front();
+			}
+			if (currentRol->IsDead() || m_queplayers.size() == 0 || currentRol->GetOwner() == nullptr) {
+
+				EndGameTurn();
+
+				//TODO start new round
+			}
+			else {
+				currentRol->GetOwner()->set_turn(true);
+				currentRol->GetOwner()->Setpreturn(true);
+				SendMessageToAll("Player " + currentRol->GetOwner()->get_name() + " its your turn \r\n");
+			}
+			}
+			else{
+				EndGameTurn();
+
+			}
 	}
 }
 
 void Game::EndGameTurn(){
+	std::shared_ptr<Player> player = nullptr;
 	for each (std::shared_ptr<Player> p in m_players){
+		p->set_turn(false);
+		p->RemoveCurrentRoles();
+		if (p->GetKing()){
+			player = p;
+			p->set_turn(true);
+			p->Setpreturn(true);
+		}
 		
 
-
 	}
+	deck->RoundReset();
+	phase = Phase::CharacterPhase;
 
+	if (player){
+		SendMessageToAll("Removing one random Charactercard from the deck \r\n");
+
+		player->get_client()->write(deck->RemoveCard(0)->GetName() + "has been removed\r\n");
+		SendMessageToAll("Player " + player->get_name() + " please select a Character card\r\n");
+
+		player->get_client()->write("Remaining card : \r\n" + deck->GetRemainingPlayerCardsString());
+	}
 
 
 }
@@ -253,5 +286,5 @@ std::shared_ptr<Player> Game::GetCurrentPlayer()
 }
 
 bool Game::CharacterPhase(){
-	return characterPhase;
+	return (phase == Phase::CharacterPhase);
 }

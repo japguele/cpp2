@@ -25,6 +25,8 @@ public:
 	bool CharacterPhase();
 	void ShuffleAcordingToPlayerCards();
 	void Preparation();
+	Phase GetPhase();
+	void ResetKing();
 private:
 	std::shared_ptr<Deck> deck;
 	bool started = false;
