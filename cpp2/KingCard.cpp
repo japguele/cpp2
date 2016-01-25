@@ -13,7 +13,7 @@ KingCard::~KingCard()
 {
 }
 
-void KingCard::StartTurn(std::shared_ptr<Player> player, std::shared_ptr<Game> game)
+void KingCard::StartTurn(std::shared_ptr<Player> player)
 {
 	for (int i = 0; i < player->get_buildcards()->size(); i++)
 	{
@@ -22,7 +22,7 @@ void KingCard::StartTurn(std::shared_ptr<Player> player, std::shared_ptr<Game> g
 		if (card->get_buildingtype() == BuildingType::Koning)
 		{
 			int amount = 1;
-			player->AddGoldAmount(game->GetDeck()->TakeGoldPieces(amount));
+			player->AddGoldAmount(Game::GetInstance()->GetDeck()->TakeGoldPieces(amount));
 		}
 	}
 }

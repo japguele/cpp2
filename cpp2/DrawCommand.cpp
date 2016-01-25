@@ -12,7 +12,7 @@ DrawCommand::~DrawCommand()
 {
 }
 
-void DrawCommand::Execute(std::shared_ptr<Game> game, const ClientCommand command) {
+void DrawCommand::Execute(const ClientCommand command) {
 	//TODO: geef 2 kaarten aan speler
 	if (command.get_player()->get_turn())
 	{
@@ -28,7 +28,7 @@ void DrawCommand::Execute(std::shared_ptr<Game> game, const ClientCommand comman
 			{ Keuze, "keuze" }
 		};
 
-		auto cards = game->GetDeck()->DrawCards(amount);
+		auto cards = Game::GetInstance()->GetDeck()->DrawCards(amount);
 		std::string message;
 
 		message += "You have drawn: \r\n";

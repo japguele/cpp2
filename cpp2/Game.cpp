@@ -3,7 +3,11 @@
 #include "PlayerCard.h"
 #include <unordered_map>
 #include <algorithm>
-Game::Game(std::shared_ptr<CommandController> controller)
+Game::Game()
+{
+}
+
+void Game::Init(std::shared_ptr<CommandController> controller)
 {
 	deck = std::shared_ptr<Deck>(new Deck(controller));
 	m_queplayers = std::queue<std::shared_ptr<PlayerCard>>();
@@ -11,10 +15,17 @@ Game::Game(std::shared_ptr<CommandController> controller)
 	phase = Phase::SetupPhase;
 }
 
-
 Game::~Game()
 {
 	printf("Game Destroyed");
+}
+
+std::shared_ptr<Game> Game::GetInstance()
+{
+	if(!instance)
+		instance = std::make_shared<Game>();
+
+	return instance;
 }
 
 const std::vector<std::shared_ptr<Player>> Game::GetPlayers(){
@@ -95,14 +106,15 @@ void Game::EndTurn() {
 			SendMessageToAll("All Playercards have been selected\r\n");
 
 			ShuffleAcordingToPlayerCards();
+			
 			characterPhase = false;
 			phase = Phase::GamePhase;
 
 			for each (std::shared_ptr<PlayerCard> v in deck->GetAllPlayerCards()) {
 				m_queplayers.push(v);
 			}
-			//SendMessageToAll("Player " + m_queplayers.front().get()->get_name() + " its your turn \r\n");
-			//p->Print(std::shared_ptr<Game>(this));
+
+			Preparation();
 		}
 		else {
 			SendMessageToAll("Player " + p->get_name() + " please remove one Character card\r\n");
@@ -131,20 +143,16 @@ void Game::EndTurn() {
 		else {
 			currentRol->GetOwner()->set_turn(true);
 			SendMessageToAll("Player " + currentRol->GetOwner()->get_name() + " its your turn \r\n");
+			currentRol->GetOwner()->Print();
 		}
 	}
 }
 
 void Game::EndGameTurn(){
 	for each (std::shared_ptr<Player> p in m_players){
-		
-
-
 	}
-
-
-
 }
+
 void Game::Preparation()
 {
 	for each (auto player in m_players)

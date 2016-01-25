@@ -21,8 +21,8 @@ public:
 
 	bool IsDead();
 
-	virtual void StartTurn(std::shared_ptr<Player> player, std::shared_ptr<Game> game);
-	virtual bool UseAbility(std::shared_ptr<Game> game, std::string target);
+	virtual void StartTurn(std::shared_ptr<Player> player);
+	virtual bool UseAbility(std::string target);
 	virtual void Die(std::shared_ptr<Player> player);
 
 protected:

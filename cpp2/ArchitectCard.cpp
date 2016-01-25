@@ -13,12 +13,12 @@ ArchitectCard::~ArchitectCard()
 {
 }
 
-bool ArchitectCard::UseAbility(std::shared_ptr<Game> game, std::string target)
+bool ArchitectCard::UseAbility(std::string target)
 {
 	bool success = false;
 
 	int amount = 2;
-	owner->add_buildcards(game->GetDeck()->DrawCards(amount));
+	owner->add_buildcards(Game::GetInstance()->GetDeck()->DrawCards(amount));
 	
 	return success;
 }

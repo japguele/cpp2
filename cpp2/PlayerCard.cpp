@@ -60,11 +60,11 @@ std::shared_ptr<Player> PlayerCard::GetOwner()
 	return owner;
 }
 
-void PlayerCard::StartTurn(std::shared_ptr<Player> player, std::shared_ptr<Game> game)
+void PlayerCard::StartTurn(std::shared_ptr<Player> player)
 {
 }
 
-bool PlayerCard::UseAbility(std::shared_ptr<Game> game, std::string target)
+bool PlayerCard::UseAbility(std::string target)
 {
 	return false;
 }

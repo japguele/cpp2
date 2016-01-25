@@ -15,7 +15,6 @@ public:
 	void Execute(std::shared_ptr<Player>, const ClientCommand command);
 
 private:
-	std::shared_ptr<Game> game;
 	std::shared_ptr<CommandController> input;
 };
 

@@ -6,6 +6,6 @@ class DrawCommand :
 public:
 	DrawCommand();
 	~DrawCommand();
-	void Execute(std::shared_ptr<Game> game, const ClientCommand command);
+	void Execute(const ClientCommand command);
 };
 

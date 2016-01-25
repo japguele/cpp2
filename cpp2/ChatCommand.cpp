@@ -11,8 +11,8 @@ ChatCommand::~ChatCommand()
 {
 }
 
-void ChatCommand::Execute(std::shared_ptr<Game> game, const ClientCommand command){
+void ChatCommand::Execute(const ClientCommand command){
 	std::string sentence = command.get_cmd();
 	sentence = sentence.substr(sentence.find_first_of(" \t") + 1);
-		game->SendMessageToAll(command.get_player()->get_name() + " : " + sentence);
+	Game::GetInstance()->SendMessageToAll(command.get_player()->get_name() + " : " + sentence);
 }

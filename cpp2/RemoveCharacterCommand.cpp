@@ -12,11 +12,11 @@ RemoveCharacterCommand::~RemoveCharacterCommand()
 {
 }
 
-void RemoveCharacterCommand::Execute(std::shared_ptr<Game> game, const ClientCommand command){
-	if (game->CharacterPhase()){
+void RemoveCharacterCommand::Execute(const ClientCommand command){
+	if (Game::GetInstance()->CharacterPhase()){
 		if (command.get_player()->get_turn()){
-			if (game->GetDeck()->GetRemainingPlayerCards()->size() % 2 == 0){
-				std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>> vec = game->GetDeck()->GetRemainingPlayerCards();
+			if (Game::GetInstance()->GetDeck()->GetRemainingPlayerCards()->size() % 2 == 0){
+				std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>> vec = Game::GetInstance()->GetDeck()->GetRemainingPlayerCards();
 				bool done = false;
 				std::vector<std::shared_ptr<PlayerCard>>::iterator temp;
 				for (auto it = vec->begin(); it != vec->end() && !done; ++it) {

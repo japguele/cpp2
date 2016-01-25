@@ -88,7 +88,7 @@ public:
 	void SetGoldAmount(int amount) { goldPieces = amount; }
 	int GetGoldAmount() { return goldPieces;  }
 
-	void Print(std::shared_ptr<Game> game);
+	void Print();
 	bool GetKing(){ return isKing; }
 	bool SetKing(bool k){ isKing = k; }
 private:

@@ -11,8 +11,6 @@ JoinCommand::~JoinCommand()
 {
 }
 
-void JoinCommand::Execute(std::shared_ptr<Game> game, const ClientCommand command){
-	game->JoinGame(command.get_player());
-
-
+void JoinCommand::Execute(const ClientCommand command){
+	Game::GetInstance()->JoinGame(command.get_player());
 }

@@ -13,14 +13,14 @@ MageCard::~MageCard()
 {
 }
 
-bool MageCard::UseAbility(std::shared_ptr<Game> game, std::string target)
+bool MageCard::UseAbility(std::string target)
 {
 	bool success = false;
 
 	std::map <std::string, PlayerType>::const_iterator iValue = playerEnumMap.find(target);
 	if (iValue != playerEnumMap.end())
 	{
-		for each (auto card in game->GetDeck()->GetAllPlayerCards())
+		for each (auto card in Game::GetInstance()->GetDeck()->GetAllPlayerCards())
 		{
 			if (card->GetOwner() != nullptr)
 			{

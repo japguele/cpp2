@@ -9,8 +9,10 @@
 class Game
 {
 public:
-	Game(std::shared_ptr<CommandController> controller);
+	static std::shared_ptr<Game> GetInstance();
+	
 	~Game();
+	void Init(std::shared_ptr<CommandController> controller);
 	void JoinGame(std::shared_ptr < Player > player);
 	const std::vector<std::shared_ptr<Player>> GetPlayers();
 	void SendMessageToAll(const std::string message);
@@ -25,7 +27,11 @@ public:
 	bool CharacterPhase();
 	void ShuffleAcordingToPlayerCards();
 	void Preparation();
+	
 private:
+	Game();
+
+	static std::shared_ptr<Game> instance;
 	std::shared_ptr<Deck> deck;
 	bool started = false;
 	bool characterPhase = false;

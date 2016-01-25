@@ -13,7 +13,7 @@ PreacherCard::~PreacherCard()
 {
 }
 
-void PreacherCard::StartTurn(std::shared_ptr<Player> player, std::shared_ptr<Game> game)
+void PreacherCard::StartTurn(std::shared_ptr<Player> player)
 {
 	for (int i = 0; i < player->get_buildcards()->size(); i++)
 	{
@@ -22,7 +22,7 @@ void PreacherCard::StartTurn(std::shared_ptr<Player> player, std::shared_ptr<Gam
 		if (card->get_buildingtype() == BuildingType::Prediker)
 		{
 			int amount = 1;
-			player->AddGoldAmount(game->GetDeck()->TakeGoldPieces(amount));
+			player->AddGoldAmount(Game::GetInstance()->GetDeck()->TakeGoldPieces(amount));
 		} 
 	}
 }
