@@ -12,7 +12,8 @@
 #include "CondotierreCard.h"
 #include "BuildCard.h"
 #include "CommandController.h"
-
+#include <algorithm>
+#include <time.h>
 Deck::Deck(std::shared_ptr<CommandController> controller)
 {	
 	m_cards = std::vector<std::shared_ptr<BuildCard>>();
@@ -38,7 +39,7 @@ Deck::Deck(std::shared_ptr<CommandController> controller)
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(2, BuildingType::Condotierre, std::string("gevangenis"))));
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(3, BuildingType::Condotierre, std::string("tournooiveld"))));
 	m_cards.push_back(std::shared_ptr<BuildCard>(new BuildCard(5, BuildingType::Condotierre, std::string("burcht"))));
-	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new MurdererCard(controller)));
+
 	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new ThiefCard(controller)));
 	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new MageCard(controller)));
 	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new KingCard(controller)));
@@ -46,9 +47,10 @@ Deck::Deck(std::shared_ptr<CommandController> controller)
 	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new MerchantCard(controller)));
 	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new ArchitectCard(controller)));
 	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new CondotierreCard(controller)));
+	m_playerCard.push_back(std::shared_ptr<PlayerCard>(new MurdererCard(controller)));
 	m_playerCardDeck = std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>>(new std::vector<std::shared_ptr<PlayerCard>>(m_playerCard));
-
-
+	ShuffleBuildDeck();
+	ShufflePlayerCards();
 	//m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));	
 //	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
 	//m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
@@ -123,7 +125,7 @@ std::vector<std::shared_ptr<PlayerCard>> Deck::GetAllPlayerCards()
 }
 void Deck::RoundReset(){
 	m_playerCardDeck = std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>>(new std::vector<std::shared_ptr<PlayerCard>>(m_playerCard));
-
+	ShufflePlayerCards();
 }
 std::shared_ptr<PlayerCard> Deck::RemoveCard(int x){
 	if (x < m_playerCardDeck->size()){
@@ -134,4 +136,14 @@ std::shared_ptr<PlayerCard> Deck::RemoveCard(int x){
 	else{
 		return nullptr;
 	}
+}
+
+void Deck::ShuffleBuildDeck(){
+	srand(time(0));
+	std::random_shuffle(m_cards.begin(), m_cards.end());
+}
+
+void Deck::ShufflePlayerCards(){
+	srand(time(0));
+	std::random_shuffle(m_playerCardDeck->begin(), m_playerCardDeck->end());
 }

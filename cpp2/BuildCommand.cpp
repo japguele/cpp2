@@ -39,4 +39,7 @@ void BuildCommand::Execute(const ClientCommand command) {
 			}
 		}
 	}
+	if (success){
+		Game::getInstance().EndTurn();
+	}
 }

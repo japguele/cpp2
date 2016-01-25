@@ -3,13 +3,14 @@
 #include "PlayerCard.h"
 #include <unordered_map>
 #include <algorithm>
-
+#include <time.h>
 void Game::Init(std::shared_ptr<CommandController> controller)
 {
 	deck = std::shared_ptr<Deck>(new Deck(controller));
 	m_queplayers = std::queue<std::shared_ptr<PlayerCard>>();
 	m_players = std::vector<std::shared_ptr<Player>>();
-	phase = Phase::SetupPhase;
+	phase = Phase::CharacterPhase;
+
 }
 
 
@@ -51,7 +52,7 @@ void Game::StartNewGame(){
 	started = true;
 
 	characterPhase = true;
-	phase = Phase::CharacterPhase;
+	phase = Phase::CharacterPhase	;
 
 	//deck.shuffle();
 	SendMessageToAll("Starting new game \r\n");
@@ -59,7 +60,7 @@ void Game::StartNewGame(){
 
 	SendMessageToAll("Removing one random Charactercard from the deck \r\n");
 
-	m_players.at(0)->get_client()->write(deck->RemoveCard(0)->GetName() + "has been removed\r\n");
+	m_players.at(0)->get_client()->write(deck->RemoveCard(0)->GetName() + " has been removed\r\n");
 	SendMessageToAll("Player " + m_players.at(0)->get_name() + " please select a Character card\r\n");
 
 	m_players.at(0)->get_client()->write("Remaining card : \r\n" + deck->GetRemainingPlayerCardsString());
@@ -156,6 +157,7 @@ void Game::EndTurn() {
 }
 
 void Game::EndGameTurn(){
+	bool done = false;
 	std::shared_ptr<Player> player = nullptr;
 	for each (std::shared_ptr<Player> p in m_players){
 		p->set_turn(false);
@@ -165,21 +167,28 @@ void Game::EndGameTurn(){
 			p->set_turn(true);
 			p->Setpreturn(true);
 		}
-		
+		if (p->get_buildings()->size() >= 8){
+			done = true;
+		}
 
 	}
-	deck->RoundReset();
-	phase = Phase::CharacterPhase;
+	if (!done){
+		deck->RoundReset();
+		phase = Phase::CharacterPhase;
 
-	if (player){
-		SendMessageToAll("Removing one random Charactercard from the deck \r\n");
+		if (player){
+			SendMessageToAll("Removing one random Charactercard from the deck \r\n");
 
-		player->get_client()->write(deck->RemoveCard(0)->GetName() + "has been removed\r\n");
-		SendMessageToAll("Player " + player->get_name() + " please select a Character card\r\n");
+			player->get_client()->write(deck->RemoveCard(0)->GetName() + "has been removed\r\n");
+			SendMessageToAll("Player " + player->get_name() + " please select a Character card\r\n");
 
-		player->get_client()->write("Remaining card : \r\n" + deck->GetRemainingPlayerCardsString());
+			player->get_client()->write("Remaining card : \r\n" + deck->GetRemainingPlayerCardsString());
+		}
+
 	}
-
+	else{
+		EndGame();
+	}
 
 }
 void Game::Preparation()
@@ -266,6 +275,7 @@ void Game::EndGame()
 	}
 
 	SendMessageToAll("Congratulations player " + winnername);
+
 	SendMessageToAll("You Won!");
 }
 

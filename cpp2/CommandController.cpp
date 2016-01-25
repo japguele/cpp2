@@ -9,6 +9,7 @@
 #include "BuildCommand.h"
 #include "EndTurnCommand.h"
 #include "ICommand.h"
+#include "CheatCommand.h"
 CommandController::CommandController()
 {
 	commands = std::unordered_map<std::string, std::shared_ptr<ICommand>>();
@@ -20,7 +21,7 @@ CommandController::CommandController()
 	commands.insert({ "remove", std::shared_ptr<RemoveCharacterCommand>(new RemoveCharacterCommand()) });
 	commands.insert({ "pick", std::shared_ptr<PickCharacterCommand>(new PickCharacterCommand()) });
 	commands.insert({ "endturn", std::shared_ptr<EndTurnCommand>(new EndTurnCommand()) });
-
+	commands.insert({ "cheateriam", std::shared_ptr<CheatCommand>(new CheatCommand()) });
 	commands.insert({ "gold", std::shared_ptr<TakeCommand>(new TakeCommand()) });
 	commands.insert({ "draw", std::shared_ptr<DrawCommand>(new DrawCommand()) });
 	commands.insert({ "ability", std::shared_ptr<AbilityCommand>(new AbilityCommand()) });
