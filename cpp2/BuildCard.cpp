@@ -31,10 +31,7 @@ std::shared_ptr<Player> BuildCard::GetOwner()
 
 void BuildCard::Destroy()
 {
-	if (owner != nullptr)
-	{
-		Game::getInstance().GetDeck()->AddUsedCard(owner->remove_building(std::shared_ptr<BuildCard>(this)));
-	}
+
 }
 
 BuildCard::~BuildCard()

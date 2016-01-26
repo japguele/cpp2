@@ -6,6 +6,7 @@ MerchantCard::MerchantCard(std::shared_ptr<CommandController> controller) :
 	PlayerCard(controller)
 {
 	m_name = "merchant";
+	type = PlayerType::KoopmanRole;
 }
 
 
@@ -13,16 +14,16 @@ MerchantCard::~MerchantCard()
 {
 }
 
-void MerchantCard::StartTurn(std::shared_ptr<Player> player)
+void MerchantCard::StartTurn()
 {
-	for (int i = 0; i < player->get_buildcards()->size(); i++)
+	for (int i = 0; i < owner->get_buildcards()->size(); i++)
 	{
-		auto card = player->get_buildcards()->at(i);
+		auto card = owner->get_buildcards()->at(i);
 
 		if (card->get_buildingtype() == BuildingType::Koopman)
 		{
 			int amount = 1;
-			player->AddGoldAmount(Game::getInstance().GetDeck()->TakeGoldPieces(amount));
+			owner->AddGoldAmount(Game::getInstance().GetDeck()->TakeGoldPieces(amount));
 		}
 	}
 }

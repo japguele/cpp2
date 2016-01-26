@@ -42,6 +42,9 @@ void Game::JoinGame(std::shared_ptr < Player > player){
 		if (m_players.size() > 1){
 			StartNewGame();
 		}
+		else{
+			player->SetKing(true);
+		}
 	}
 	else{
 		player->get_client()->write("Games has allready started");
@@ -140,11 +143,11 @@ void Game::EndTurn() {
 
 				EndGameTurn();
 
-				//TODO start new round
 			}
 			else {
 				currentRol->GetOwner()->set_turn(true);
 				currentRol->GetOwner()->Setpreturn(true);
+				currentRol->StartTurn();
 				SendMessageToAll("Player " + currentRol->GetOwner()->get_name() + " its your turn \r\n");
 				currentRol->GetOwner()->Print();
 			}

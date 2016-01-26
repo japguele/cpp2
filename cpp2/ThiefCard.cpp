@@ -6,6 +6,7 @@ ThiefCard::ThiefCard(std::shared_ptr<CommandController> controller) :
 	PlayerCard(controller)
 {
 	m_name = "thief";
+	type = PlayerType::DiefRole;
 }
 
 

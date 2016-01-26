@@ -8,7 +8,7 @@ public:
 	~MerchantCard();
 
 	virtual bool UseAbility( std::string target) override;
-	virtual void StartTurn(std::shared_ptr<Player> player) override;
+	virtual void StartTurn() override;
 
 	virtual std::shared_ptr<PlayerCard> EmptyClone() override;
 };
