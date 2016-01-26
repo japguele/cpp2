@@ -8,5 +8,7 @@ public:
 	~KingCard();
 
 	virtual void StartTurn(std::shared_ptr<Player> player) override;
+
+	virtual std::shared_ptr<PlayerCard> EmptyClone() override;
 };
 

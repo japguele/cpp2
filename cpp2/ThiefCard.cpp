@@ -59,3 +59,8 @@ bool ThiefCard::UseAbility( std::string target)
 	}
 	return success;
 }
+
+std::shared_ptr<PlayerCard> ThiefCard::EmptyClone()
+{
+	return std::make_shared<ThiefCard>(controller);
+}

@@ -22,3 +22,8 @@ bool ArchitectCard::UseAbility(std::string target)
 	
 	return success;
 }
+
+std::shared_ptr<PlayerCard> ArchitectCard::EmptyClone()
+{
+	return std::make_shared<ArchitectCard>(controller);
+}

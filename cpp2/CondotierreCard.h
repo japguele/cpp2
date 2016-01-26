@@ -9,5 +9,7 @@ public:
 
 	virtual void StartTurn(std::shared_ptr<Player> player) override;
 	virtual bool UseAbility(std::string target) override;
+
+	virtual std::shared_ptr<PlayerCard> EmptyClone() override;
 };
 

@@ -61,3 +61,8 @@ bool MageCard::UseAbility( std::string target)
 
 	return success;
 }
+
+std::shared_ptr<PlayerCard> MageCard::EmptyClone()
+{
+	return std::make_shared<MageCard>(controller);
+}

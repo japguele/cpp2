@@ -2,7 +2,7 @@
 #include "PlayerCard.h"
 #include "CommandController.h"
 
-PlayerCard::PlayerCard(std::shared_ptr<CommandController> controller)
+PlayerCard::PlayerCard(std::shared_ptr<CommandController> _controller)
 {
     m_commands = std::set<std::shared_ptr<ICommand>>();
 	m_commands.insert(controller->GetCommand("join"));
@@ -27,6 +27,8 @@ PlayerCard::PlayerCard(std::shared_ptr<CommandController> controller)
 	m_name = "error_no_name";
 	dead = false;
 	abilityUsed = false;
+
+	controller = _controller;
 }
 
 bool PlayerCard::CanDoCommand(std::shared_ptr<ICommand> command){

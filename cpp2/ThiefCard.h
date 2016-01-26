@@ -8,5 +8,7 @@ public:
 	~ThiefCard();
 
 	virtual bool UseAbility(std::string target) override;
+
+	virtual std::shared_ptr<PlayerCard> EmptyClone() override;
 };
 

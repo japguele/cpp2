@@ -26,7 +26,9 @@ public:
 	virtual bool UseAbility(std::string target);
 	virtual void Die(std::shared_ptr<Player> player);
 
+	virtual std::shared_ptr<PlayerCard> EmptyClone() = 0;
 protected:
+	std::shared_ptr<CommandController> controller;
 	std::string m_name;
 	std::set<std::shared_ptr<ICommand>> m_commands;
 	PlayerType type;

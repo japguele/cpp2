@@ -33,3 +33,8 @@ bool MurdererCard::UseAbility(std::string target)
 	return success;
 }
 
+std::shared_ptr<PlayerCard> MurdererCard::EmptyClone()
+{
+	return std::make_shared<MurdererCard>(controller);
+}
+

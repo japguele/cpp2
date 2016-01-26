@@ -49,3 +49,8 @@ bool MerchantCard::UseAbility(std::string target)
 	}
 	return success;
 }
+
+std::shared_ptr<PlayerCard> MerchantCard::EmptyClone()
+{
+	return std::make_shared<MerchantCard>(controller);
+}

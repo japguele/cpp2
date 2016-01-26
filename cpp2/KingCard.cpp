@@ -26,3 +26,8 @@ void KingCard::StartTurn(std::shared_ptr<Player> player)
 		}
 	}
 }
+
+std::shared_ptr<PlayerCard> KingCard::EmptyClone()
+{
+	return std::make_shared<KingCard>(controller);
+}

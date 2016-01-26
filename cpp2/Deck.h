@@ -3,6 +3,7 @@
 #include <memory>
 #include <unordered_map>
 #include "PlayerType.h"
+#include "FileIO.h"
 
 class PlayerCard;
 class BuildCard;
@@ -28,11 +29,18 @@ public:
 	void ShuffleBuildDeck();
 	void ShufflePlayerCards();
 
+	void CreateRoles(string role);
+	void CreateBuildings(vector<string> building);
 private:
+	std::unordered_map<string, std::shared_ptr<PlayerCard>> rolesRegistery;
+	std::unordered_map<string, std::shared_ptr<BuildCard>> buildingRegistery;
+
 	std::vector<std::shared_ptr<BuildCard>> m_cards;
 	std::vector<std::shared_ptr<BuildCard>> m_usedcards;
 	std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>> m_playerCardDeck;
 	std::vector<std::shared_ptr<PlayerCard>> m_playerCard;
 	int goldPieces;
+
+	std::shared_ptr<FileIO> io;
 };
 

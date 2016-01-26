@@ -46,4 +46,8 @@ bool CondotierreCard::UseAbility( std::string target)
 	return success;
 }
 
+std::shared_ptr<PlayerCard> CondotierreCard::EmptyClone()
+{
+	return std::make_shared<CondotierreCard>(controller);
+}
 

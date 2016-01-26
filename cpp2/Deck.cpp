@@ -12,10 +12,62 @@
 #include "CondotierreCard.h"
 #include "BuildCard.h"
 #include "CommandController.h"
+
 #include <algorithm>
 #include <time.h>
 Deck::Deck(std::shared_ptr<CommandController> controller)
 {	
+	io = std::make_shared<FileIO>();
+
+	rolesRegistery = std::unordered_map<string, std::shared_ptr<PlayerCard>>
+	{
+		{ "murderer", std::make_shared<MurdererCard>(controller) },
+		{ "thief", std::make_shared<ThiefCard>(controller) },
+		{ "mage", std::make_shared<MageCard>(controller) },
+		{ "king", std::make_shared<KingCard>(controller) },
+		{ "preacher", std::make_shared<PreacherCard>(controller) },
+		{ "merchant", std::make_shared<MerchantCard>(controller) },
+		{ "architect", std::make_shared<ArchitectCard>(controller) },
+		{ "condotierre", std::make_shared<CondotierreCard>(controller) },
+	};
+
+	buildingRegistery = std::unordered_map<string, std::shared_ptr<BuildCard>>
+	{
+		{ "Landgoed", std::make_shared<BuildCard>(3, BuildingType::Koning,std::string("landgoed")) },
+		{ "Kasteel", std::make_shared<BuildCard>(4, BuildingType::Koning, std::string("kasteel")) },
+		{ "Paleis", std::make_shared<BuildCard>(5, BuildingType::Koning, std::string("palijs")) },
+
+		{ "Taveerne", std::make_shared<BuildCard>(1, BuildingType::Koopman, std::string("taveerne")) },
+		{ "Winkels", std::make_shared<BuildCard>(2, BuildingType::Koopman, std::string("winkels")) },
+		{ "Markt", std::make_shared<BuildCard>(2, BuildingType::Koopman, std::string("markt")) },
+		{ "Handelshuis", std::make_shared<BuildCard>(3, BuildingType::Koopman, std::string("handelshuis")) },
+		{ "Haven", std::make_shared<BuildCard>(4, BuildingType::Koopman, std::string("haven")) },
+		{ "Raadhuis", std::make_shared<BuildCard>(5, BuildingType::Koopman, std::string("raadhuis")) },
+
+		{ "Tempel", std::make_shared<BuildCard>(1, BuildingType::Prediker, std::string("tempel")) },
+		{ "Kerk", std::make_shared<BuildCard>(2, BuildingType::Prediker, std::string("kerk")) },
+		{ "Klooster", std::make_shared<BuildCard>(3, BuildingType::Prediker, std::string("klooster")) },
+		{ "Kathedraal", std::make_shared<BuildCard>(5, BuildingType::Prediker, std::string("kathedraal")) },
+
+		{ "Wachttoren", std::make_shared<BuildCard>(1, BuildingType::Condotierre, std::string("wachttoren")) },
+		{ "Gevangenis", std::make_shared<BuildCard>(2, BuildingType::Condotierre, std::string("gevangenis")) },
+		{ "Toernooiveld", std::make_shared<BuildCard>(3, BuildingType::Condotierre, std::string("tournooiveld")) },
+		{ "Burcht", std::make_shared<BuildCard>(5, BuildingType::Condotierre, std::string("burcht")) },
+	};
+
+	std::vector<string> roles = io->LoadRoles();
+	std::vector<std::vector<string>> buildings = io->LoadBuildings();
+
+	for each (string role in roles)
+	{
+
+	}
+
+	for each (std::vector<string> building in buildings)
+	{
+
+	}
+
 	m_cards = std::vector<std::shared_ptr<BuildCard>>();
 	m_playerCard = std::vector<std::shared_ptr<PlayerCard>>();;
 
@@ -63,6 +115,16 @@ Deck::Deck(std::shared_ptr<CommandController> controller)
 
 Deck::~Deck()
 {
+}
+
+void Deck::CreateRoles(string role)
+{
+	m_playerCard.push_back(rolesRegistery.at(role).get()->EmptyClone());
+}
+
+void Deck::CreateBuildings(vector<string> building)
+{
+
 }
 
 std::vector<std::shared_ptr<BuildCard>> Deck::DrawCards(int ammount){

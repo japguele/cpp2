@@ -26,3 +26,8 @@ void PreacherCard::StartTurn(std::shared_ptr<Player> player)
 		} 
 	}
 }
+
+std::shared_ptr<PlayerCard> PreacherCard::EmptyClone()
+{
+	return std::make_shared<PreacherCard>(controller);
+}

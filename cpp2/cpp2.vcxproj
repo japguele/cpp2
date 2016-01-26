@@ -93,6 +93,7 @@
     <ClInclude Include="Deck.h" />
     <ClInclude Include="DrawCommand.h" />
     <ClInclude Include="EndTurnCommand.h" />
+    <ClInclude Include="FileIO.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="ICommand.h" />
@@ -133,6 +134,7 @@
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="DrawCommand.cpp" />
     <ClCompile Include="EndTurnCommand.cpp" />
+    <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="ICommand.cpp" />
