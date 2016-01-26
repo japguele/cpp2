@@ -19,6 +19,7 @@ public:
 	std::shared_ptr<Player> GetOwner();
 
 	void Destroy();
+	std::shared_ptr<BuildCard> EmptyClone();
 private:
 	int m_goldcost;
 	BuildingType m_type;

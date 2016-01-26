@@ -37,6 +37,11 @@ void BuildCard::Destroy()
 	}
 }
 
+std::shared_ptr<BuildCard> BuildCard::EmptyClone()
+{
+	return std::make_shared<BuildCard>(m_name, m_goldcost, m_type);
+}
+
 BuildCard::~BuildCard()
 {
 }

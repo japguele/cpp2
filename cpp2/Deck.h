@@ -32,6 +32,8 @@ public:
 	void CreateRoles(string role);
 	void CreateBuildings(vector<string> building);
 private:
+	std::map <std::string, BuildingType> enumMap;
+
 	std::unordered_map<string, std::shared_ptr<PlayerCard>> rolesRegistery;
 	std::unordered_map<string, std::shared_ptr<BuildCard>> buildingRegistery;
 
@@ -41,6 +43,6 @@ private:
 	std::vector<std::shared_ptr<PlayerCard>> m_playerCard;
 	int goldPieces;
 
-	std::shared_ptr<FileIO> io;
+	//std::shared_ptr<FileIO> io;
 };
 
