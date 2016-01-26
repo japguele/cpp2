@@ -13,20 +13,20 @@
 CommandController::CommandController()
 {
 	commands = std::unordered_map<std::string, std::shared_ptr<ICommand>>();
-	commands.insert({ "join", std::shared_ptr<JoinCommand>(new JoinCommand()) });
-	commands.insert({ "list", std::shared_ptr<ListCommand>(new ListCommand()) });
-	commands.insert({ "chat", std::shared_ptr<ChatCommand>(new ChatCommand()) });
-	commands.insert({ "print", std::shared_ptr<PrintCommand>(new PrintCommand()) });
+	commands.insert({ "join", std::make_shared<JoinCommand>() });
+	commands.insert({ "list", std::make_shared<ListCommand>() });
+	commands.insert({ "chat", std::make_shared<ChatCommand>() });
+	commands.insert({ "print", std::make_shared<PrintCommand>() });
 
-	commands.insert({ "remove", std::shared_ptr<RemoveCharacterCommand>(new RemoveCharacterCommand()) });
-	commands.insert({ "pick", std::shared_ptr<PickCharacterCommand>(new PickCharacterCommand()) });
-	commands.insert({ "endturn", std::shared_ptr<EndTurnCommand>(new EndTurnCommand()) });
-	commands.insert({ "cheateriam", std::shared_ptr<CheatCommand>(new CheatCommand()) });
-	commands.insert({ "gold", std::shared_ptr<TakeCommand>(new TakeCommand()) });
-	commands.insert({ "draw", std::shared_ptr<DrawCommand>(new DrawCommand()) });
-	commands.insert({ "ability", std::shared_ptr<AbilityCommand>(new AbilityCommand()) });
+	commands.insert({ "remove", std::make_shared<RemoveCharacterCommand>() });
+	commands.insert({ "pick", std::make_shared<PickCharacterCommand>() });
+	commands.insert({ "endturn", std::make_shared<EndTurnCommand>() });
+	commands.insert({ "cheateriam", std::make_shared<CheatCommand>() });
+	commands.insert({ "gold", std::make_shared<TakeCommand>() });
+	commands.insert({ "draw", std::make_shared<DrawCommand>() });
+	commands.insert({ "ability", std::make_shared<AbilityCommand>() });
 
-	commands.insert({ "built", std::shared_ptr<BuildCommand>(new BuildCommand()) });
+	commands.insert({ "built", std::make_shared<BuildCommand>() });
 }
 
 std::shared_ptr<ICommand> CommandController::GetCommand(std::string name){

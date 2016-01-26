@@ -18,16 +18,11 @@
 Deck::Deck(std::shared_ptr<CommandController> controller)
 {	
 	io = std::make_shared<FileIO>();
+	m_cards = std::vector<std::shared_ptr<BuildCard>>();
+	m_playerCard = std::vector<std::shared_ptr<PlayerCard>>();;
+	m_playerCardDeck = std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>>(new std::vector<std::shared_ptr<PlayerCard>>(m_playerCard));
 
-	enumMap =
-	{
-		{ "king", Koning },
-		{ "preacher", Prediker },
-		{ "merchant", Koopman },
-		{ "condotierre", Condotierre },
-		{ "keuze", Keuze }
-	};
-
+	m_usedcards = std::vector<std::shared_ptr<BuildCard>>();
 
 	rolesRegistery = std::unordered_map<string, std::shared_ptr<PlayerCard>>
 	{
@@ -78,17 +73,8 @@ Deck::Deck(std::shared_ptr<CommandController> controller)
 		CreateBuildings(building);
 	}
 
-	m_cards = std::vector<std::shared_ptr<BuildCard>>();
-	m_playerCard = std::vector<std::shared_ptr<PlayerCard>>();;
-	m_playerCardDeck = std::shared_ptr<std::vector<std::shared_ptr<PlayerCard>>>(new std::vector<std::shared_ptr<PlayerCard>>(m_playerCard));
-
 	ShuffleBuildDeck();
 	ShufflePlayerCards();
-	//m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));	
-//	m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
-	//m_playerCardDeck.push_back(std::shared_ptr<PlayerCard>(new PlayerCard(controller)));
-
-	m_usedcards = std::vector<std::shared_ptr<BuildCard>>();
 
 	goldPieces = 30;
 }
