@@ -6,6 +6,7 @@ KingCard::KingCard(std::shared_ptr<CommandController> controller) :
 	PlayerCard(controller)
 {
 	m_name = "king";
+	type = PlayerType::KoningRole;
 }
 
 
@@ -13,16 +14,16 @@ KingCard::~KingCard()
 {
 }
 
-void KingCard::StartTurn(std::shared_ptr<Player> player)
+void KingCard::StartTurn()
 {
-	for (int i = 0; i < player->get_buildcards()->size(); i++)
+	for (int i = 0; i < owner->get_buildcards()->size(); i++)
 	{
-		auto card = player->get_buildcards()->at(i);
+		auto card = owner->get_buildcards()->at(i);
 
 		if (card->get_buildingtype() == BuildingType::Koning)
 		{
 			int amount = 1;
-			player->AddGoldAmount(Game::getInstance().GetDeck()->TakeGoldPieces(amount));
+			owner->AddGoldAmount(Game::getInstance().GetDeck()->TakeGoldPieces(amount));
 		}
 	}
 }

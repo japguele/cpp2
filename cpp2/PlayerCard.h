@@ -22,9 +22,9 @@ public:
 	bool IsDead();
 	void Reset();
 
-	virtual void StartTurn(std::shared_ptr<Player> player);
+	virtual void StartTurn();
 	virtual bool UseAbility(std::string target);
-	virtual void Die(std::shared_ptr<Player> player);
+	void Die();
 
 	virtual std::shared_ptr<PlayerCard> EmptyClone() = 0;
 protected:

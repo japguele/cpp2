@@ -6,6 +6,7 @@ MurdererCard::MurdererCard(std::shared_ptr<CommandController> controller) :
 	PlayerCard(controller)
 {
 	m_name = "murderer";
+	type = PlayerType::MoordenaarRole;
 }
 
 
@@ -24,7 +25,8 @@ bool MurdererCard::UseAbility(std::string target)
 		{
 			if (card->GetType() == iValue->second)
 			{
-				card->Die(Game::getInstance().GetCurrentPlayer());
+				card->Die();
+				Game::getInstance().SendMessageToAll("Murderer has killed the " + target + " \r\n");
 				success = true;
 			}
 		}		

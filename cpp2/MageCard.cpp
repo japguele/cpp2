@@ -6,6 +6,7 @@ MageCard::MageCard(std::shared_ptr<CommandController> controller) :
 	PlayerCard(controller)
 {
 	m_name = "mage";
+	type = PlayerType::MagierRole;
 }
 
 

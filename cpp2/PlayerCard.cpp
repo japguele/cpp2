@@ -28,7 +28,7 @@ PlayerCard::PlayerCard(std::shared_ptr<CommandController> _controller)
 
 	m_name = "error_no_name";
 	dead = false;
-	abilityUsed = false;	
+	abilityUsed = false;
 }
 
 bool PlayerCard::CanDoCommand(std::shared_ptr<ICommand> command){
@@ -63,7 +63,7 @@ std::shared_ptr<Player> PlayerCard::GetOwner()
 	return owner;
 }
 
-void PlayerCard::StartTurn(std::shared_ptr<Player> player)
+void PlayerCard::StartTurn()
 {
 }
 
@@ -72,7 +72,7 @@ bool PlayerCard::UseAbility(std::string target)
 	return false;
 }
 
-void PlayerCard::Die(std::shared_ptr <Player> player)
+void PlayerCard::Die()
 {
 	dead = true;
 }

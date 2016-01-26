@@ -97,6 +97,7 @@
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameController.h" />
+    <ClInclude Include="GameStateCommand.h" />
     <ClInclude Include="ICommand.h" />
     <ClInclude Include="JoinCommand.h" />
     <ClInclude Include="KingCard.h" />
@@ -138,6 +139,7 @@
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="GameStateCommand.cpp" />
     <ClCompile Include="ICommand.cpp" />
     <ClCompile Include="JoinCommand.cpp" />
     <ClCompile Include="KingCard.cpp" />

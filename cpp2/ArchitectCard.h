@@ -9,6 +9,7 @@ public:
 
 	virtual bool UseAbility(std::string target) override;
 
+	void ArchitectCard::StartTurn();
 	virtual std::shared_ptr<PlayerCard> EmptyClone() override;
 };
 

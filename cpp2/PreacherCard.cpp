@@ -6,6 +6,7 @@ PreacherCard::PreacherCard(std::shared_ptr<CommandController> controller) :
 	PlayerCard(controller)
 {
 	m_name = "preacher";
+	type = PlayerType::PredikerRole;
 }
 
 
@@ -13,16 +14,16 @@ PreacherCard::~PreacherCard()
 {
 }
 
-void PreacherCard::StartTurn(std::shared_ptr<Player> player)
+void PreacherCard::StartTurn()
 {
-	for (int i = 0; i < player->get_buildcards()->size(); i++)
+	for (int i = 0; i < owner->get_buildcards()->size(); i++)
 	{
-		auto card = player->get_buildcards()->at(i);
+		auto card = owner->get_buildcards()->at(i);
 
 		if (card->get_buildingtype() == BuildingType::Prediker)
 		{
 			int amount = 1;
-			player->AddGoldAmount(Game::getInstance().GetDeck()->TakeGoldPieces(amount));
+			owner->AddGoldAmount(Game::getInstance().GetDeck()->TakeGoldPieces(amount));
 		} 
 	}
 }
